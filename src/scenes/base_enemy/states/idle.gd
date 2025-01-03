@@ -7,6 +7,5 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func physics_update(delta: float) -> void:
-	baseEnemy.chase(delta);
+func _process(delta: float) -> void:
 	pass

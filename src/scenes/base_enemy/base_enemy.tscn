@@ -7,7 +7,7 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_aiw85"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_knewe"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_g2ukt"]
 
 [node name="BaseEnemy" type="Node3D"]
 script = ExtResource("1_hgge1")
@@ -16,19 +16,16 @@ script = ExtResource("1_hgge1")
 script = ExtResource("2_pa4fa")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("baseEnemy")]
+[node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("3_2sic5")
-baseEnemy = NodePath("../..")
 
-[node name="Chase" type="Node" parent="StateMachine" node_paths=PackedStringArray("baseEnemy")]
+[node name="Chase" type="Node" parent="StateMachine"]
 script = ExtResource("4_itarq")
-baseEnemy = NodePath("../..")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
 mesh = SubResource("BoxMesh_aiw85")
-skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-shape = SubResource("BoxShape3D_knewe")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_g2ukt")
