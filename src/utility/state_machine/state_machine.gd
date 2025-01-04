@@ -18,7 +18,7 @@ func _ready():
 		if(not state):
 			continue
 			
-		print_debug("Detected State", state)
+		print_debug("Detected State ", state)
 		state.connect("transitioned_to", _on_transitioned_to)
 		state.connect("transitioned_back", _on_transitioned_from)
 	
@@ -26,7 +26,7 @@ func _ready():
 		current_state.enter()
 		
 func transition_to(target_state_path: NodePath, msg: Dictionary = {}) -> void:
-	print_debug("Transitioning to state", target_state_path)
+	print_debug("Transitioning to state ", target_state_path)
 	
 	if(not has_node(target_state_path)):
 		return
