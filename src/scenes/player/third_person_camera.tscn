@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cii6miicojobq"]
+[gd_scene load_steps=5 format=3 uid="uid://cfn12143wise8"]
 
 [ext_resource type="Script" path="res://src/utility/camera_controller.gd" id="1_pk70c"]
 
