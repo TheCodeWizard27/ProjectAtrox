@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6a75x1i220e6"]
+
+[ext_resource type="Script" path="res://src/scenes/free_cam/free_cam.gd" id="1_2cukc"]
+
+[node name="FreeCam" type="Node3D"]
+script = ExtResource("1_2cukc")
+
+[node name="RemoteCamera" type="RemoteTransform3D" parent="."]

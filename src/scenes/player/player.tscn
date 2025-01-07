@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://duchts23k3yxm"]
+
+[ext_resource type="Script" path="res://src/scenes/player/player.gd" id="1_6dcuc"]
+[ext_resource type="Script" path="res://src/utility/state_machine/state_machine.gd" id="1_vniht"]
+[ext_resource type="PackedScene" uid="uid://cg7pt0ick1aks" path="res://src/assets/guy.tscn" id="2_cngte"]
+[ext_resource type="Script" path="res://src/utility/camera_controller.gd" id="2_mmyg0"]
+[ext_resource type="Script" path="res://src/scenes/player/states/airborne.gd" id="4_ktq5s"]
+[ext_resource type="Script" path="res://src/scenes/player/states/grounded.gd" id="5_6nusj"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_gngtj"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gjp8o"]
+
+[node name="Player" type="Node3D"]
+script = ExtResource("1_6dcuc")
+
+[node name="Body" type="CharacterBody3D" parent="."]
+
+[node name="Mesh" type="MeshInstance3D" parent="Body"]
+visible = false
+mesh = SubResource("CapsuleMesh_gngtj")
+
+[node name="Collision" type="CollisionShape3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_gjp8o")
+
+[node name="CameraTracker" type="RemoteTransform3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+remote_path = NodePath("../../CameraMount")
+update_rotation = false
+update_scale = false
+
+[node name="guy" parent="Body" instance=ExtResource("2_cngte")]
+
+[node name="CameraMount" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+script = ExtResource("2_mmyg0")
+
+[node name="CameraArm" type="SpringArm3D" parent="CameraMount"]
+spring_length = 4.0
+margin = 0.1
+
+[node name="RemoteCamera" type="RemoteTransform3D" parent="CameraMount/CameraArm"]
+
+[node name="State" type="Node" parent="."]
+script = ExtResource("1_vniht")
+initial_state = NodePath("Grounded")
+
+[node name="Airborne" type="Node" parent="State" node_paths=PackedStringArray("player", "body")]
+script = ExtResource("4_ktq5s")
+player = NodePath("../..")
+body = NodePath("../../Body")
+
+[node name="Grounded" type="Node" parent="State" node_paths=PackedStringArray("player", "body")]
+script = ExtResource("5_6nusj")
+player = NodePath("../..")
+body = NodePath("../../Body")

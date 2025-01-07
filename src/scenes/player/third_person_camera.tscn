@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfn12143wise8"]
+
+[ext_resource type="Script" path="res://src/utility/camera_controller.gd" id="1_pk70c"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_af78m"]
+
+[sub_resource type="Sky" id="Sky_8ft0y"]
+sky_material = SubResource("ProceduralSkyMaterial_af78m")
+
+[sub_resource type="Environment" id="Environment_acsgy"]
+background_mode = 2
+sky = SubResource("Sky_8ft0y")
+
+[node name="CameraMount" type="Node3D" node_paths=PackedStringArray("camera")]
+script = ExtResource("1_pk70c")
+camera = NodePath("CameraArm/Camera")
+
+[node name="CameraArm" type="SpringArm3D" parent="."]
+spring_length = 4.0
+
+[node name="Camera" type="Camera3D" parent="CameraArm"]
+environment = SubResource("Environment_acsgy")
