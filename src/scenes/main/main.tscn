@@ -61,7 +61,7 @@ shape = SubResource("SphereShape3D_jqomj")
 mesh = SubResource("SphereMesh_y13bp")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 9.68942, 2.47287, 0, -2.47287, 9.68942, 0, 4.79543, 0)
+transform = Transform3D(1, 0, 0, 0, 0.968942, 0.247287, 0, -0.247287, 0.968942, 0, 4.79543, 0)
 environment = SubResource("Environment_rsx47")
 attributes = SubResource("CameraAttributesPractical_de42x")
 current = true
