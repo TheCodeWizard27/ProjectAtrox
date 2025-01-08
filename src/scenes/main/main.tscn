@@ -56,3 +56,30 @@ shape = SubResource("HeightMapShape3D_lw1sj")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 material_override = SubResource("ShaderMaterial_wkj7t")
 mesh = SubResource("PlaneMesh_6fahk")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.79543, 0)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="RigidBody3D"]
+remote_path = NodePath("../../Camera3D")
+update_rotation = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("SphereShape3D_jqomj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("SphereMesh_y13bp")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.968942, 0.247287, 0, -0.247287, 0.968942, 0, 4.79543, 0)
+environment = SubResource("Environment_rsx47")
+attributes = SubResource("CameraAttributesPractical_de42x")
+current = true
+fov = 37.8493
+script = ExtResource("4_uh3h8")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.543076, -0.835031, 0.0882715, 0.491952, -0.231221, 0.839357, -0.680478, 0.49926, 0.536366, -12.9537, 28.2241, -75.3056)
+
+[node name="BaseEnemy" parent="." instance=ExtResource("5_c754u")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 15, 17, -0.004)
