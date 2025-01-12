@@ -10,7 +10,7 @@ func update(delta: float) -> void:
 
 func physics_update(delta: float) -> void:
 	
-	if(not body.is_on_floor()):
+	if(!body.is_on_floor()):
 		transition_to(PlayerState.AIRBORNE)
 		return
 	

@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://duchts23k3yxm"]
+[gd_scene load_steps=10 format=3 uid="uid://duchts23k3yxm"]
 
 [ext_resource type="Script" path="res://src/scenes/player/player.gd" id="1_6dcuc"]
 [ext_resource type="Script" path="res://src/utility/state_machine/state_machine.gd" id="1_vniht"]
 [ext_resource type="PackedScene" uid="uid://cg7pt0ick1aks" path="res://src/assets/guy.tscn" id="2_cngte"]
-[ext_resource type="Script" path="res://src/utility/camera_controller.gd" id="2_mmyg0"]
+[ext_resource type="Script" path="res://src/scenes/player/camera_mount.gd" id="3_fv4qe"]
 [ext_resource type="Script" path="res://src/scenes/player/states/airborne.gd" id="4_ktq5s"]
 [ext_resource type="Script" path="res://src/scenes/player/states/grounded.gd" id="5_6nusj"]
 
@@ -11,10 +11,13 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gjp8o"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_3vwln"]
+
 [node name="Player" type="Node3D"]
 script = ExtResource("1_6dcuc")
 
 [node name="Body" type="CharacterBody3D" parent="."]
+floor_snap_length = 0.2
 
 [node name="Mesh" type="MeshInstance3D" parent="Body"]
 visible = false
@@ -34,13 +37,14 @@ update_scale = false
 
 [node name="CameraMount" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-script = ExtResource("2_mmyg0")
+script = ExtResource("3_fv4qe")
 
 [node name="CameraArm" type="SpringArm3D" parent="CameraMount"]
+shape = SubResource("SphereShape3D_3vwln")
 spring_length = 4.0
-margin = 0.1
+margin = 0.2
 
-[node name="RemoteCamera" type="RemoteTransform3D" parent="CameraMount/CameraArm"]
+[node name="Camera3D" type="Camera3D" parent="CameraMount/CameraArm"]
 
 [node name="State" type="Node" parent="."]
 script = ExtResource("1_vniht")
