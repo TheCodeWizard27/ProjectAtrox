@@ -28,19 +28,15 @@ func process_movement(delta: float, speed_modifier: float = 1):
 	
 	# Calculate velocity with separated y component.
 	var y_velocity = _body.velocity.y
-	_body.velocity = _body.velocity.move_toward(move_dir * max_speed, acceleration * delta)
-	_body.velocity.y = y_velocity - Globals.GRAVITY * 3 * delta
+	_body.velocity = move_dir * max_speed
+	# TODO maybe using acceleration movement is not the way.
+	#_body.velocity = _body.velocity.move_toward(move_dir * max_speed, acceleration * delta)
+	_body.velocity.y = y_velocity - Globals.GRAVITY * delta
 	
 	# Rotate Character body	
 	if(move_dir.length() > turn_threshold):
 		var target = Vector3.BACK.signed_angle_to(move_dir, Vector3.UP)
 		_body.rotation.y = lerp_angle(_body.rotation.y, target, 10 * delta)
-	
-	#var x_speed = move_dir.x * speed * speed_modifier
-	#var z_speed = move_dir.z * speed * speed_modifier
-	
-	#_body.velocity.x = lerpf(_body.velocity.x, min(x_speed, speed), 1)
-	#_body.velocity.z = lerpf(_body.velocity.z, min(z_speed, speed), 1)
 
 func _set_camera_active(value: bool) -> void:
 	_camera_mount.active = value

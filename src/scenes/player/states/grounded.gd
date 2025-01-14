@@ -14,9 +14,9 @@ func physics_update(delta: float) -> void:
 		transition_to(PlayerState.AIRBORNE)
 		return
 	
-	#if(Input.is_action_just_pressed(InputHandler.JUMP)):
-		#transition_to(PlayerState.JUMPING)
-		#return
+	if(Input.is_action_just_pressed("jump")):
+		transition_to(PlayerState.JUMPING)
+		return
 	
 	player.process_movement(delta)
 	

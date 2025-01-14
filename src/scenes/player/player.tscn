@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://duchts23k3yxm"]
+[gd_scene load_steps=11 format=3 uid="uid://duchts23k3yxm"]
 
 [ext_resource type="Script" path="res://src/scenes/player/player.gd" id="1_6dcuc"]
 [ext_resource type="Script" path="res://src/utility/state_machine/state_machine.gd" id="1_vniht"]
-[ext_resource type="PackedScene" uid="uid://cg7pt0ick1aks" path="res://src/assets/guy.tscn" id="2_cngte"]
+[ext_resource type="PackedScene" path="res://src/assets/guy.tscn" id="2_cngte"]
 [ext_resource type="Script" path="res://src/scenes/player/camera_mount.gd" id="3_fv4qe"]
 [ext_resource type="Script" path="res://src/scenes/player/states/airborne.gd" id="4_ktq5s"]
 [ext_resource type="Script" path="res://src/scenes/player/states/grounded.gd" id="5_6nusj"]
+[ext_resource type="Script" path="res://src/scenes/player/states/jumping.gd" id="7_hbynt"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gngtj"]
 
@@ -57,5 +58,10 @@ body = NodePath("../../Body")
 
 [node name="Grounded" type="Node" parent="State" node_paths=PackedStringArray("player", "body")]
 script = ExtResource("5_6nusj")
+player = NodePath("../..")
+body = NodePath("../../Body")
+
+[node name="Jumping" type="Node" parent="State" node_paths=PackedStringArray("player", "body")]
+script = ExtResource("7_hbynt")
 player = NodePath("../..")
 body = NodePath("../../Body")
