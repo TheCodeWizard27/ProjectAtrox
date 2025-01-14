@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://duchts23k3yxm"]
+[gd_scene load_steps=19 format=3 uid="uid://duchts23k3yxm"]
 
 [ext_resource type="Script" path="res://src/scenes/player/player.gd" id="1_6dcuc"]
 [ext_resource type="Script" path="res://src/utility/state_machine/state_machine.gd" id="1_vniht"]
@@ -7,12 +7,47 @@
 [ext_resource type="Script" path="res://src/scenes/player/states/airborne.gd" id="4_ktq5s"]
 [ext_resource type="Script" path="res://src/scenes/player/states/grounded.gd" id="5_6nusj"]
 [ext_resource type="Script" path="res://src/scenes/player/states/jumping.gd" id="7_hbynt"]
+[ext_resource type="Script" path="res://src/scenes/player/player_animator.gd" id="8_nq300"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gngtj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gjp8o"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3vwln"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_21jv3"]
+animation = &"falling"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ocx1f"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jjbdc"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f5ys7"]
+animation = &"running"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tt55p"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_y8knu"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_jjbdc")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_f5ys7")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_tt55p")
+blend_point_2/pos = 0.0
+min_space = 0.0
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3x7hp"]
+graph_offset = Vector2(-285.612, 32.8158)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_21jv3")
+nodes/Animation/position = Vector2(400, 240)
+nodes/falling/node = SubResource("AnimationNodeBlend2_ocx1f")
+nodes/falling/position = Vector2(600, 120)
+nodes/output/position = Vector2(820, 140)
+nodes/running/node = SubResource("AnimationNodeBlendSpace1D_y8knu")
+nodes/running/position = Vector2(380, 80)
+node_connections = [&"falling", 0, &"running", &"falling", 1, &"Animation", &"output", 0, &"falling"]
 
 [node name="Player" type="Node3D"]
 script = ExtResource("1_6dcuc")
@@ -36,6 +71,41 @@ update_scale = false
 
 [node name="guy" parent="Body" instance=ExtResource("2_cngte")]
 
+[node name="rig" parent="Body/guy" index="0"]
+transform = Transform3D(1.10371, 0.0512624, -0.0071986, -0.0506944, 1.10147, 0.0711223, 0.0104757, -0.0707136, 1.10261, -0.0344991, -0.0305902, 0.073243)
+
+[node name="Skeleton3D" parent="Body/guy/rig" index="0"]
+bones/1/rotation = Quaternion(-0.148812, 0.00261104, -0.00241063, 0.988859)
+bones/2/rotation = Quaternion(0.031688, -0.00835146, -0.00322594, 0.999458)
+bones/3/rotation = Quaternion(0.01464, -0.00828963, -0.00296765, 0.999854)
+bones/4/rotation = Quaternion(0.212692, 0.000390627, -0.000694917, 0.977119)
+bones/5/rotation = Quaternion(-0.0066261, 0.000240996, -0.000876074, 0.999978)
+bones/6/rotation = Quaternion(-0.159238, 0.000396905, -0.00075873, 0.98724)
+bones/8/rotation = Quaternion(-0.606541, -0.336859, -0.340566, 0.634547)
+bones/9/rotation = Quaternion(-0.117741, 0.741729, -0.56622, 0.339663)
+bones/10/rotation = Quaternion(0.313128, 0.221975, 0.102939, 0.91765)
+bones/11/rotation = Quaternion(-0.0572159, -0.140783, -0.124685, 0.98049)
+bones/13/rotation = Quaternion(-0.585533, 0.354157, 0.396863, 0.611738)
+bones/14/rotation = Quaternion(-0.0490339, -0.739214, 0.581678, 0.335872)
+bones/15/rotation = Quaternion(0.3363, -0.219889, -0.110556, 0.909026)
+bones/16/rotation = Quaternion(-0.0569283, 0.245987, 0.0675022, 0.965243)
+bones/26/rotation = Quaternion(0.975807, 0.0197913, -0.0421434, 0.21362)
+bones/27/rotation = Quaternion(0.258738, -0.0743321, -0.0265899, 0.962716)
+bones/28/rotation = Quaternion(-0.774922, -0.145316, -0.0140241, 0.614966)
+bones/29/rotation = Quaternion(0.700981, 0.710821, -0.0563701, -0.0134773)
+bones/31/rotation = Quaternion(0.97209, -0.0275038, 0.131422, 0.192388)
+bones/32/rotation = Quaternion(0.193593, 0.0541816, 0.028184, 0.979179)
+bones/33/rotation = Quaternion(-0.733138, 0.114196, -0.0656336, 0.667204)
+bones/34/rotation = Quaternion(-0.701081, 0.710858, -0.054573, 0.013743)
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Body/guy/rig/Skeleton3D" index="10"]
+transform = Transform3D(-0.779229, -0.0439199, 0.625199, 0.326771, -0.879696, 0.345479, 0.534812, 0.473504, 0.699836, -0.408093, 0.796206, 0.349621)
+bone_name = "ORG-hand.R_end"
+bone_idx = 17
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Body/guy/rig/Skeleton3D/BoneAttachment3D"]
+remote_path = NodePath("../../../../../../RightHand")
+
 [node name="CameraMount" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 script = ExtResource("3_fv4qe")
@@ -47,21 +117,42 @@ margin = 0.2
 
 [node name="Camera3D" type="Camera3D" parent="CameraMount/CameraArm"]
 
+[node name="RightHand" type="Node3D" parent="."]
+transform = Transform3D(-0.847142, -0.0969788, 0.702711, 0.437466, -0.933052, 0.398612, 0.55842, 0.583837, 0.753767, -0.446617, 0.891957, 0.398162)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="RightHand"]
+transform = Transform3D(-0.696931, 0.143524, -0.702629, -0.716394, -0.183939, 0.673012, -0.0326471, 0.972403, 0.231013, 0.0250001, -0.08, 0.081)
+radius = 0.047
+height = 0.745
+
 [node name="State" type="Node" parent="."]
 script = ExtResource("1_vniht")
 initial_state = NodePath("Grounded")
 
-[node name="Airborne" type="Node" parent="State" node_paths=PackedStringArray("player", "body")]
+[node name="Airborne" type="Node" parent="State" node_paths=PackedStringArray("player", "body", "animator")]
 script = ExtResource("4_ktq5s")
 player = NodePath("../..")
 body = NodePath("../../Body")
+animator = NodePath("../../AnimationTree")
 
-[node name="Grounded" type="Node" parent="State" node_paths=PackedStringArray("player", "body")]
+[node name="Grounded" type="Node" parent="State" node_paths=PackedStringArray("player", "body", "animator")]
 script = ExtResource("5_6nusj")
 player = NodePath("../..")
 body = NodePath("../../Body")
+animator = NodePath("../../AnimationTree")
 
-[node name="Jumping" type="Node" parent="State" node_paths=PackedStringArray("player", "body")]
+[node name="Jumping" type="Node" parent="State" node_paths=PackedStringArray("player", "body", "animator")]
 script = ExtResource("7_hbynt")
 player = NodePath("../..")
 body = NodePath("../../Body")
+animator = NodePath("../../AnimationTree")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../Body/guy")
+tree_root = SubResource("AnimationNodeBlendTree_3x7hp")
+anim_player = NodePath("../Body/guy/AnimationPlayer")
+parameters/falling/blend_amount = 0.0
+parameters/running/blend_position = 0.0
+script = ExtResource("8_nq300")
+
+[editable path="Body/guy"]

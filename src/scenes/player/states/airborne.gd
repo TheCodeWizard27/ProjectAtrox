@@ -2,8 +2,7 @@ extends PlayerState
 
 func physics_update(delta: float) -> void:
 	
-	# TODO maybe always apply gravity instead of just in floating.
-	#body.velocity.y -= Globals.GRAVITY * delta
+	animator.advance_falling_to(1, delta)
 	
 	if(body.is_on_floor()):
 		transition_to(PlayerState.GROUNDED)

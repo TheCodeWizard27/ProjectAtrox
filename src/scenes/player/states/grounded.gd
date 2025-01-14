@@ -1,14 +1,8 @@
 extends PlayerState
 
-func exit() -> void:
-	pass
-	#player.set_walking_animation(0)
-
-func update(delta: float) -> void:
-	pass
-	#player.process_movement_animation()
-
 func physics_update(delta: float) -> void:
+	
+	animator.advance_falling_to(0, delta)
 	
 	if(!body.is_on_floor()):
 		transition_to(PlayerState.AIRBORNE)
@@ -20,3 +14,4 @@ func physics_update(delta: float) -> void:
 	
 	player.process_movement(delta)
 	
+	animator.set_running(Vector2(body.velocity.x, body.velocity.z).length())
