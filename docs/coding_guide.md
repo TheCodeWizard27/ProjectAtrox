@@ -22,7 +22,9 @@ This root node will be used to manage the state outside of the Statemachine.
 
 For the StateMachine to function you need to call its "process" and "physics_process" method. Example of inside the "player.gd".
 
-![1737133094342](images/coding_guide/1737133094342.png)![1737133268043](images/coding_guide/1737133268043.png)
+![1737133094342](images/coding_guide/1737133094342.png)
+
+![1737133268043](images/coding_guide/1737133268043.png)
 
 Now you can configure as many states as subnodes as necessary. Just add a new node and with it its own code file.
 
