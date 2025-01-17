@@ -32,4 +32,6 @@ Now you can configure as many states as subnodes as necessary. Just add a new no
 
 Inside every states code, extend the "State" class or a wrapper that includes data like in the example of "PlayerState".
 You can then override the lifetime hooks of the state to add functionality. Using the "transition_to" method and passing a NodePath you can transition between states. Example of all of the lifetime hooks:
+
+
 ![1737133757911](images/coding_guide/1737133757911.png)
