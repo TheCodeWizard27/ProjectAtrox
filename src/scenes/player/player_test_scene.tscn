@@ -1,38 +1,70 @@
-[gd_scene load_steps=6 format=3 uid="uid://dl0tbfrqgfpka"]
+[gd_scene load_steps=13 format=3 uid="uid://dl0tbfrqgfpka"]
 
+[ext_resource type="Texture2D" uid="uid://bjev50b72ddco" path="res://icon.svg" id="1_1204e"]
 [ext_resource type="PackedScene" uid="uid://duchts23k3yxm" path="res://src/scenes/player/player.tscn" id="1_juro1"]
 [ext_resource type="PackedScene" uid="uid://b6a75x1i220e6" path="res://src/scenes/free_cam/free_cam.tscn" id="2_32amj"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3h06y"]
-ground_bottom_color = Color(0.384314, 0.454902, 0.54902, 1)
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qa6h5"]
+panorama = ExtResource("1_1204e")
 
-[sub_resource type="Sky" id="Sky_sbh6i"]
-sky_material = SubResource("ProceduralSkyMaterial_3h06y")
+[sub_resource type="Sky" id="Sky_w5o4s"]
+sky_material = SubResource("PanoramaSkyMaterial_qa6h5")
 
-[sub_resource type="Environment" id="Environment_obhwr"]
+[sub_resource type="Environment" id="Environment_lu6ox"]
 background_mode = 2
-sky = SubResource("Sky_sbh6i")
+sky = SubResource("Sky_w5o4s")
+tonemap_mode = 2
+sdfgi_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ihcau"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ef08x"]
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_a0v24"]
+noise = SubResource("FastNoiseLite_ef08x")
+
+[sub_resource type="FogMaterial" id="FogMaterial_pvvi2"]
+density = 2.618
+density_texture = SubResource("NoiseTexture3D_a0v24")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0dx38"]
+albedo_color = Color(0.873298, 0.873298, 0.873298, 1)
+metallic = 1.0
+grow_amount = -12.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5io4h"]
+albedo_color = Color(0.892217, 0.851781, 0.726312, 1)
+metallic = 1.0
 
 [node name="PlayerTestScene" type="Node3D"]
 
-[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_juro1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.804432, 0)
-camera = NodePath("../Camera3D")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13111, 0)
-environment = SubResource("Environment_obhwr")
-current = true
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_lu6ox")
+camera_attributes = SubResource("CameraAttributesPractical_ihcau")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.647561, 0.762013, 0, -0.762013, 0.647561, 0, 40.0506, 0)
+transform = Transform3D(1, 0, 0, 0, 0.647561, 0.762013, 0, -0.762013, 0.647561, 0, 28.1011, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_juro1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.80443, 0)
+
+[node name="FreeCam" parent="." instance=ExtResource("2_32amj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.305, 6.94618, -1.7631)
+active = false
+
+[node name="FogVolume" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.88878, 0.902369, 0)
+material = SubResource("FogMaterial_pvvi2")
 
 [node name="Map" type="Node3D" parent="."]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Map"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.102882, -2.30443, -1.58324)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.102882, -2.30443, -1.11257)
 use_collision = true
-size = Vector3(54.394, 1, 30.9423)
+size = Vector3(54.394, 1, 30.001)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1222, 2.40358, -0.419678)
@@ -40,7 +72,7 @@ use_collision = true
 size = Vector3(1, 8.41602, 13.8394)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Map/CSGBox3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0318689, 1.60035, 0.0312026)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0386295, 1.60035, 0.0312026)
 operation = 2
 size = Vector3(1.35101, 3.37585, 8.021)
 
@@ -49,7 +81,14 @@ transform = Transform3D(0.774757, -0.632259, 0, 0.632259, 0.774757, 0, 0, 0, 1, 
 use_collision = true
 size = Vector3(6.23926, 1, 8.31396)
 
-[node name="FreeCam" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("2_32amj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.305, 6.94618, -1.7631)
-enabled = false
-camera = NodePath("../Camera3D")
+[node name="CSGBox3D5" type="CSGBox3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.3611, -1.30443, 1.4834)
+use_collision = true
+size = Vector3(1, 1, 12)
+material = SubResource("StandardMaterial3D_0dx38")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6864, 0.19557, 0.741699)
+use_collision = true
+size = Vector3(1, 4, 8)
+material = SubResource("StandardMaterial3D_5io4h")

@@ -3,13 +3,20 @@ class_name CameraController
 extends Node3D
 
 @export_range(0, 1) var mouse_sensitivity: float = 0.2
-@export var camera: Camera3D
+@export var active: bool = true:
+	get:
+		return active
+	set(value):
+		active = value
+		active_changed.emit(value)
+
+signal active_changed
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _unhandled_input(event: InputEvent) -> void:
-	if(camera == null || not camera.current):
+	if(!active):
 		return
 	
 	if(event.is_action("click")):

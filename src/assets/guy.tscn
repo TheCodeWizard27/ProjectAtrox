@@ -3,34 +3,34 @@
 [ext_resource type="PackedScene" uid="uid://slcrdsg5ydjr" path="res://src/assets/guy.glb" id="1_htcds"]
 [ext_resource type="Texture2D" uid="uid://bjev50b72ddco" path="res://icon.svg" id="2_sl3fv"]
 
-[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_72jf7"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3swmu"]
 albedo_texture = ExtResource("2_sl3fv")
 
 [node name="guy" instance=ExtResource("1_htcds")]
 
 [node name="rig" parent="." index="0"]
-transform = Transform3D(1.09753, 0.0337138, -0.123084, -0.0501104, 1.09393, -0.147193, 0.117368, 0.15179, 1.08814, -0.0315404, -0.0684282, -0.191763)
+transform = Transform3D(0.502428, 0.0506116, -0.982785, 0.00419316, 1.10334, 0.058964, 0.984076, -0.0305415, 0.501518, -0.0281785, -0.0430122, 0.0216964)
 
 [node name="Skeleton3D" parent="rig" index="0"]
-bones/1/rotation = Quaternion(-0.0417657, 0.125673, -0.00159202, 0.991191)
-bones/2/rotation = Quaternion(-0.0109901, 0.0152603, 0.012072, 0.99975)
-bones/3/rotation = Quaternion(-0.0276256, 0.0155325, 0.0106631, 0.999441)
-bones/4/rotation = Quaternion(0.212323, -0.0115893, -0.00727316, 0.977104)
+bones/1/rotation = Quaternion(0.0991844, 0.0667717, -0.0241525, 0.992532)
+bones/2/rotation = Quaternion(0.102909, 0.0224575, -0.00653778, 0.994416)
+bones/3/rotation = Quaternion(0.086043, 0.0222663, -0.00706676, 0.996018)
+bones/4/rotation = Quaternion(0.187264, -0.035663, 0.00290819, 0.981658)
 bones/4/scale = Vector3(1, 1, 1)
-bones/5/rotation = Quaternion(-0.00691999, -0.0127312, -0.0050126, 0.999883)
-bones/6/rotation = Quaternion(-0.15955, -0.0115639, -0.00731335, 0.987095)
-bones/8/rotation = Quaternion(-0.57651, -0.353325, -0.433394, 0.595792)
-bones/9/rotation = Quaternion(-0.283418, 0.931645, -0.167488, 0.153817)
+bones/5/rotation = Quaternion(-0.0323686, -0.0345161, 0.00943147, 0.998835)
+bones/6/rotation = Quaternion(-0.18454, -0.0356729, 0.00278405, 0.982174)
+bones/8/rotation = Quaternion(-0.639507, -0.281971, -0.362133, 0.616752)
+bones/9/rotation = Quaternion(-0.0828665, 0.561004, -0.23517, 0.789369)
 bones/9/scale = Vector3(1, 1, 1)
-bones/10/rotation = Quaternion(0.561069, 0.189727, 0.184448, 0.784336)
+bones/10/rotation = Quaternion(0.445452, 0.157629, 0.22438, 0.852279)
 bones/10/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(-0.026307, -0.331753, -0.0271087, 0.94261)
+bones/11/rotation = Quaternion(0.0191103, -0.659741, 0.0470199, 0.749777)
 bones/11/scale = Vector3(1, 1, 1)
-bones/13/rotation = Quaternion(-0.595503, 0.340056, 0.41048, 0.601036)
-bones/14/rotation = Quaternion(-0.0297707, -0.641671, 0.551874, 0.531796)
-bones/15/rotation = Quaternion(0.6859, -0.162671, -0.225485, 0.672485)
+bones/13/rotation = Quaternion(-0.577264, 0.386852, 0.356013, 0.624793)
+bones/14/rotation = Quaternion(0.0872094, -0.576266, 0.124586, 0.802988)
+bones/15/rotation = Quaternion(0.189304, -0.230454, -0.0625688, 0.952439)
 bones/15/scale = Vector3(1, 1, 1)
-bones/16/rotation = Quaternion(-0.0275684, 0.366282, -0.183404, 0.911834)
+bones/16/rotation = Quaternion(0.026953, 0.279318, 0.101212, 0.954469)
 bones/18/rotation = Quaternion(-5.42602e-08, 0.696936, 0.717133, -5.25152e-08)
 bones/18/scale = Vector3(1, 1, 1)
 bones/20/rotation = Quaternion(-5.42602e-08, 0.696936, 0.717133, -5.25152e-08)
@@ -38,61 +38,60 @@ bones/20/scale = Vector3(1, 1, 1)
 bones/22/scale = Vector3(1, 1, 1)
 bones/24/rotation = Quaternion(-0.152455, 0.793331, 0.285504, 0.515627)
 bones/24/scale = Vector3(1, 1, 1)
-bones/26/rotation = Quaternion(0.856627, 0.0541813, -0.0561293, 0.510004)
+bones/26/rotation = Quaternion(0.850332, 0.0552364, -0.204807, 0.4816)
 bones/26/scale = Vector3(1, 1, 1)
-bones/27/rotation = Quaternion(0.89604, -0.0397053, -0.055898, 0.438646)
+bones/27/rotation = Quaternion(0.689521, 0.0368275, -0.0174008, 0.72312)
 bones/27/scale = Vector3(1, 1, 1)
-bones/28/rotation = Quaternion(-0.693154, -0.0282644, -0.0182188, 0.720004)
+bones/28/rotation = Quaternion(-0.536577, -0.0374043, 0.0940638, 0.837758)
 bones/28/scale = Vector3(1, 1, 1)
-bones/29/rotation = Quaternion(0.701062, 0.7108, -0.0553634, -0.0144981)
+bones/29/rotation = Quaternion(0.700396, 0.710918, -0.063233, -0.00651493)
 bones/29/scale = Vector3(1, 1, 1)
-bones/31/rotation = Quaternion(0.992892, 0.0360814, 0.032513, 0.10866)
+bones/31/rotation = Quaternion(0.704152, 0.0339248, 0.0911554, 0.703356)
 bones/31/scale = Vector3(1, 1, 1)
-bones/32/rotation = Quaternion(0.247036, -0.0847725, 0.00568328, 0.965274)
+bones/32/rotation = Quaternion(0.886481, -0.0603104, 0.0380189, 0.45724)
 bones/32/scale = Vector3(1, 1, 1)
-bones/33/rotation = Quaternion(-0.720129, -0.0260881, -0.0510172, 0.691471)
+bones/33/rotation = Quaternion(-0.601396, 0.0798141, -0.0715011, 0.791732)
 bones/33/scale = Vector3(1, 1, 1)
-bones/34/rotation = Quaternion(-0.660195, 0.688403, -0.242271, -0.177618)
+bones/34/rotation = Quaternion(-0.701144, 0.710778, -0.0543081, 0.0155695)
 
 [node name="Foot" parent="rig/Skeleton3D" index="0"]
 transform = Transform3D(0.9998, -0.0199913, -0.000993796, 0.0199915, 0.9998, 0.000246026, 0.000988677, -0.000265852, 1, 0, 0, 0)
-surface_material_override/0 = SubResource("ORMMaterial3D_72jf7")
+surface_material_override/0 = SubResource("StandardMaterial3D_3swmu")
 
 [node name="Hand" parent="rig/Skeleton3D" index="1"]
 transform = Transform3D(0.9998, -0.0199913, -0.000993796, 0.0199915, 0.9998, 0.000246026, 0.000988677, -0.000265852, 1, 0, 0, 0)
-surface_material_override/0 = SubResource("ORMMaterial3D_72jf7")
+surface_material_override/0 = SubResource("StandardMaterial3D_3swmu")
 
 [node name="Head" parent="rig/Skeleton3D" index="2"]
 transform = Transform3D(0.9998, -0.0199913, -0.000993796, 0.0199915, 0.9998, 0.000246026, 0.000988677, -0.000265852, 1, 0, 0, 0)
-surface_material_override/0 = SubResource("ORMMaterial3D_72jf7")
+surface_material_override/0 = SubResource("StandardMaterial3D_3swmu")
 
 [node name="LowerArm" parent="rig/Skeleton3D" index="3"]
 transform = Transform3D(0.9998, -0.0199913, -0.000993796, 0.0199915, 0.9998, 0.000246026, 0.000988677, -0.000265852, 1, 0, 0, 0)
-surface_material_override/0 = SubResource("ORMMaterial3D_72jf7")
+surface_material_override/0 = SubResource("StandardMaterial3D_3swmu")
 
 [node name="LowerBody" parent="rig/Skeleton3D" index="4"]
 transform = Transform3D(0.9998, -0.0199913, -0.000993796, 0.0199915, 0.9998, 0.000246026, 0.000988677, -0.000265852, 1, 0, 0, 0)
-surface_material_override/0 = SubResource("ORMMaterial3D_72jf7")
+surface_material_override/0 = SubResource("StandardMaterial3D_3swmu")
 
 [node name="Neck" parent="rig/Skeleton3D" index="5"]
 transform = Transform3D(0.9998, -0.0199913, -0.000993796, 0.0199915, 0.9998, 0.000246026, 0.000988677, -0.000265852, 1, 0, 0, 0)
-surface_material_override/0 = SubResource("ORMMaterial3D_72jf7")
+surface_material_override/0 = SubResource("StandardMaterial3D_3swmu")
 
 [node name="UnderLeg" parent="rig/Skeleton3D" index="6"]
 transform = Transform3D(0.9998, -0.0199913, -0.000993796, 0.0199915, 0.9998, 0.000246026, 0.000988677, -0.000265852, 1, 0, 0, 0)
-surface_material_override/0 = SubResource("ORMMaterial3D_72jf7")
+surface_material_override/0 = SubResource("StandardMaterial3D_3swmu")
 
 [node name="UpperArm" parent="rig/Skeleton3D" index="7"]
 transform = Transform3D(0.9998, -0.0199913, -0.000993796, 0.0199915, 0.9998, 0.000246026, 0.000988677, -0.000265852, 1, 0, 0, 0)
-surface_material_override/0 = SubResource("ORMMaterial3D_72jf7")
+surface_material_override/0 = SubResource("StandardMaterial3D_3swmu")
 
 [node name="UpperBody" parent="rig/Skeleton3D" index="8"]
 transform = Transform3D(0.9998, -0.0199913, -0.000993796, 0.0199915, 0.9998, 0.000246026, 0.000988677, -0.000265852, 1, 0, 0, 0)
-surface_material_override/0 = SubResource("ORMMaterial3D_72jf7")
+surface_material_override/0 = SubResource("StandardMaterial3D_3swmu")
 
 [node name="UpperLeg" parent="rig/Skeleton3D" index="9"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-surface_material_override/0 = SubResource("ORMMaterial3D_72jf7")
+surface_material_override/0 = SubResource("StandardMaterial3D_3swmu")
 
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "running"
