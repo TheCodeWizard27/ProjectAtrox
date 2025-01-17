@@ -4,10 +4,10 @@ This document describes some general rules and gives a guide on how to structure
 
 ## Naming
 
-Folder names   -> snake_case
-File names       -> snake_case
-Class names     -> PascalCase
-Node names    -> PascalCase
+* Folder names   -> snake_case
+* File names       -> snake_case
+* Class names     -> PascalCase
+* Node names    -> PascalCase
 
 ## State machine
 
