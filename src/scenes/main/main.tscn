@@ -53,6 +53,7 @@ height_map = ExtResource("2_6el57")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.543076, -0.835031, 0.0882712, 0.491952, -0.231221, 0.839357, -0.680478, 0.49926, 0.536366, -12.9537, 28.2241, -75.3056)
+shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_lkyke")
