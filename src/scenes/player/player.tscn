@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://duchts23k3yxm"]
+[gd_scene load_steps=23 format=3 uid="uid://duchts23k3yxm"]
 
 [ext_resource type="Script" path="res://src/scenes/player/player.gd" id="1_6dcuc"]
 [ext_resource type="Script" path="res://src/utility/state_machine/state_machine.gd" id="1_vniht"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://src/scenes/player/states/grounded.gd" id="5_6nusj"]
 [ext_resource type="Script" path="res://src/scenes/player/states/jumping.gd" id="7_hbynt"]
 [ext_resource type="Script" path="res://src/scenes/player/player_animator.gd" id="8_nq300"]
+[ext_resource type="Script" path="res://src/scenes/player/states/attacking.gd" id="9_hvnhx"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gngtj"]
 
@@ -22,9 +23,9 @@ animation = &"falling"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hnecw"]
 animation = &"attack_melee_1"
 
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_7lsdv"]
-filter_enabled = true
-filters = ["rig/Skeleton3D:ORG-forearm.L", "rig/Skeleton3D:ORG-forearm.R", "rig/Skeleton3D:ORG-hand.L", "rig/Skeleton3D:ORG-hand.L_end", "rig/Skeleton3D:ORG-hand.R", "rig/Skeleton3D:ORG-hand.R_end", "rig/Skeleton3D:ORG-shoulder.L", "rig/Skeleton3D:ORG-shoulder.R", "rig/Skeleton3D:ORG-upper_arm.L", "rig/Skeleton3D:ORG-upper_arm.R"]
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_6arlh"]
+fadein_time = 0.1
+fadeout_time = 0.1
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ocx1f"]
 
@@ -47,19 +48,19 @@ blend_point_2/pos = 0.0
 min_space = 0.0
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3x7hp"]
-graph_offset = Vector2(-207.986, -90.0834)
+graph_offset = Vector2(-347.377, -22.4796)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_21jv3")
 nodes/Animation/position = Vector2(400, 240)
-nodes/Attack/node = SubResource("AnimationNodeAnimation_hnecw")
-nodes/Attack/position = Vector2(100, 140)
-nodes/attacking/node = SubResource("AnimationNodeBlend2_7lsdv")
-nodes/attacking/position = Vector2(360, 0)
+nodes/attack/node = SubResource("AnimationNodeAnimation_hnecw")
+nodes/attack/position = Vector2(80, 100)
+nodes/attack_one_shot/node = SubResource("AnimationNodeOneShot_6arlh")
+nodes/attack_one_shot/position = Vector2(340, -60)
 nodes/falling/node = SubResource("AnimationNodeBlend2_ocx1f")
 nodes/falling/position = Vector2(600, 120)
 nodes/output/position = Vector2(820, 140)
 nodes/running/node = SubResource("AnimationNodeBlendSpace1D_y8knu")
-nodes/running/position = Vector2(100, -40)
-node_connections = [&"attacking", 0, &"running", &"attacking", 1, &"Attack", &"falling", 0, &"attacking", &"falling", 1, &"Animation", &"output", 0, &"falling"]
+nodes/running/position = Vector2(80, -100)
+node_connections = [&"attack_one_shot", 0, &"running", &"attack_one_shot", 1, &"attack", &"falling", 0, &"attack_one_shot", &"falling", 1, &"Animation", &"output", 0, &"falling"]
 
 [node name="Player" type="Node3D"]
 script = ExtResource("1_6dcuc")
@@ -114,37 +115,40 @@ bones/34/rotation = Quaternion(-0.660195, 0.688403, -0.242271, -0.177618)
 [node name="botter_animated" parent="Body" instance=ExtResource("3_p5nxa")]
 
 [node name="rig" parent="Body/botter_animated" index="0"]
-transform = Transform3D(1.1047, 0.00676934, 0.021073, -0.00756755, 1.1041, 0.0420399, -0.0207996, -0.0421757, 1.10392, -0.0517037, -0.0211384, 0.0395675)
+transform = Transform3D(1.10375, 0.0163061, -0.0482818, -0.0141784, 1.10376, 0.0486463, 0.048949, -0.0479751, 1.1028, -0.0282877, -0.020994, 0.0400648)
 
 [node name="Skeleton3D" parent="Body/botter_animated/rig" index="0"]
-bones/1/rotation = Quaternion(-0.150175, -0.00301446, 0.00232828, 0.988652)
-bones/2/rotation = Quaternion(0.0296721, -0.0280614, 0.00335637, 0.99916)
-bones/3/rotation = Quaternion(0.0124949, -0.0279324, 0.00449046, 0.999522)
-bones/4/rotation = Quaternion(0.193702, 0.006112, -0.00977559, 0.980993)
-bones/5/rotation = Quaternion(-0.0259216, 0.00420856, -0.0106779, 0.999598)
-bones/6/rotation = Quaternion(-0.174725, 0.0061731, -0.00990653, 0.984548)
-bones/8/rotation = Quaternion(-0.639919, -0.287279, -0.322643, 0.635512)
-bones/9/rotation = Quaternion(-0.0535904, 0.759039, -0.591848, 0.265903)
-bones/10/rotation = Quaternion(0.273244, 0.211104, 0.0309714, 0.937984)
-bones/11/rotation = Quaternion(-0.171768, -0.292011, -0.0384629, 0.940078)
+bones/0/rotation = Quaternion(0.12582, -2.27119e-14, 3.91072e-15, 0.992053)
+bones/1/rotation = Quaternion(-0.152674, -0.00271341, 0.00264162, 0.988269)
+bones/2/rotation = Quaternion(0.0258594, -0.0268021, 0.00262506, 0.999303)
+bones/3/rotation = Quaternion(0.00821806, -0.0264968, 0.00364677, 0.999609)
+bones/4/rotation = Quaternion(0.190979, 0.00812933, -0.00686804, 0.981536)
+bones/5/rotation = Quaternion(-0.0283259, 0.00663482, -0.00839055, 0.999542)
+bones/6/rotation = Quaternion(-0.177063, 0.00809367, -0.00711368, 0.984141)
+bones/8/rotation = Quaternion(-0.620048, -0.32337, -0.30644, 0.645807)
+bones/9/rotation = Quaternion(-0.107148, 0.753468, -0.591865, 0.265522)
+bones/10/rotation = Quaternion(0.279247, 0.210321, 0.033053, 0.936319)
+bones/11/rotation = Quaternion(-0.173984, -0.265469, -0.0271245, 0.947903)
 bones/12/rotation = Quaternion(0.0240571, 0.0443862, -0.237545, 0.970064)
-bones/13/rotation = Quaternion(-0.593136, 0.352391, 0.388043, 0.611091)
-bones/14/rotation = Quaternion(-0.0472663, -0.745378, 0.596777, 0.293317)
-bones/15/rotation = Quaternion(0.278992, -0.210355, -0.0329647, 0.936391)
-bones/16/rotation = Quaternion(-0.209698, 0.306736, -0.0435591, 0.927385)
+bones/13/rotation = Quaternion(-0.597023, 0.349394, 0.37521, 0.617013)
+bones/14/rotation = Quaternion(-0.071736, -0.74515, 0.593661, 0.295248)
+bones/15/rotation = Quaternion(0.277669, -0.210528, -0.0325054, 0.936761)
+bones/16/rotation = Quaternion(-0.207702, 0.297254, -0.0469501, 0.93075)
 bones/16/scale = Vector3(1, 1, 1)
 bones/17/rotation = Quaternion(-0.021992, -0.0320751, 0.117901, 0.992263)
-bones/26/rotation = Quaternion(0.981006, 0.0328379, -0.0532537, 0.183611)
-bones/27/rotation = Quaternion(0.21173, -0.0713912, -0.0293959, 0.974274)
-bones/28/rotation = Quaternion(-0.76436, -0.0843138, 0.0706755, 0.635335)
-bones/29/rotation = Quaternion(0.702832, 0.708558, -0.0626315, -0.00709022)
-bones/31/rotation = Quaternion(0.97776, -0.0101101, 0.0947705, 0.186821)
-bones/32/rotation = Quaternion(0.214688, 0.0345634, 0.0211639, 0.975841)
-bones/33/rotation = Quaternion(-0.768199, 0.0791824, -0.0491364, 0.633393)
-bones/34/rotation = Quaternion(-0.703065, 0.708526, -0.0599658, 0.00977711)
+bones/18/rotation = Quaternion(6.75329e-09, 0.696936, 0.717133, 9.66769e-09)
+bones/20/rotation = Quaternion(6.75329e-09, 0.696936, 0.717133, 9.66769e-09)
+bones/26/rotation = Quaternion(0.981679, 0.0209804, -0.0472911, 0.183385)
+bones/27/rotation = Quaternion(0.222128, -0.0792928, -0.0311206, 0.97129)
+bones/28/rotation = Quaternion(-0.771465, -0.099354, 0.0473666, 0.626679)
+bones/29/rotation = Quaternion(0.702974, 0.708539, -0.0610198, -0.00871513)
+bones/31/rotation = Quaternion(0.977433, -0.0235513, 0.0938198, 0.187796)
+bones/32/rotation = Quaternion(0.205953, 0.0276989, 0.0159544, 0.97804)
+bones/33/rotation = Quaternion(-0.757953, 0.0681965, -0.0690324, 0.645051)
+bones/34/rotation = Quaternion(-0.70303, 0.708531, -0.0603703, 0.00936948)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Body/botter_animated/rig/Skeleton3D" index="10"]
-transform = Transform3D(-0.892134, -0.32462, 0.314194, 0.362785, -0.929238, 0.0700322, 0.269227, 0.176463, 0.946772, -0.383981, 0.920718, 0.151347)
+transform = Transform3D(-0.899558, -0.340126, 0.274062, 0.372136, -0.925293, 0.073128, 0.228715, 0.167771, 0.958928, -0.390572, 0.924919, 0.137163)
 bone_name = "ORG-hand.R"
 bone_idx = 16
 
@@ -167,7 +171,7 @@ margin = 0.2
 [node name="Camera3D" type="Camera3D" parent="CameraMount/CameraArm"]
 
 [node name="RightHand" type="Node3D" parent="."]
-transform = Transform3D(-0.942279, -0.283541, 0.502556, 0.382516, -1.02744, 0.137528, 0.432021, 0.291266, 0.97436, -0.47743, 0.794276, 0.225745)
+transform = Transform3D(-0.977351, -0.326911, 0.398463, 0.399788, -1.01998, 0.14378, 0.325288, 0.271352, 1.02049, -0.47001, 0.802504, 0.178754)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="RightHand"]
 transform = Transform3D(-0.741147, 0.209154, -0.637929, -0.624651, 0.133331, 0.769437, 0.245986, 0.968751, 0.0318303, 0.0803518, -0.0648632, 0.302239)
@@ -196,14 +200,24 @@ player = NodePath("../..")
 body = NodePath("../../Body")
 animator = NodePath("../../AnimationTree")
 
+[node name="Attacking" type="Node" parent="State" node_paths=PackedStringArray("player", "body", "animator")]
+script = ExtResource("9_hvnhx")
+player = NodePath("../..")
+body = NodePath("../../Body")
+animator = NodePath("../../AnimationTree")
+
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../Body/botter_animated")
 tree_root = SubResource("AnimationNodeBlendTree_3x7hp")
 anim_player = NodePath("../Body/botter_animated/AnimationPlayer")
-parameters/attacking/blend_amount = 0.0
+parameters/attack_one_shot/active = false
+parameters/attack_one_shot/internal_active = false
+parameters/attack_one_shot/request = 0
 parameters/falling/blend_amount = 0.0
 parameters/running/blend_position = 0.0
 script = ExtResource("8_nq300")
+
+[connection signal="animation_finished" from="AnimationTree" to="AnimationTree" method="_on_animation_finished"]
 
 [editable path="Body/guy"]
 [editable path="Body/botter_animated"]

@@ -28,7 +28,7 @@ func process_movement(delta: float, speed_modifier: float = 1):
 	
 	# Calculate velocity with separated y component.
 	var y_velocity = _body.velocity.y
-	_body.velocity = move_dir * max_speed
+	_body.velocity = move_dir * max_speed * speed_modifier
 	# TODO maybe using acceleration movement is not the way.
 	#_body.velocity = _body.velocity.move_toward(move_dir * max_speed, acceleration * delta)
 	_body.velocity.y = y_velocity - Globals.GRAVITY * delta
