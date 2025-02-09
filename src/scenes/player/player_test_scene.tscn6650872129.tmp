@@ -37,7 +37,13 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_juro1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.80443, 0)
+active = true
+max_speed = 12.0
 acceleration = 100.0
+min_jump_height = 10.0
+max_jump_height = 10.0
+jump_time = 0.1
+turn_threshold = 0.2
 
 [node name="FreeCam" parent="." instance=ExtResource("2_32amj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.305, 6.94618, -1.7631)
@@ -59,21 +65,6 @@ size = Vector3(1, 8.41602, 13.8394)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0386295, 1.60035, 0.0312026)
 operation = 2
 size = Vector3(1.35101, 3.37585, 8.021)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="Map"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.57767, 1.34239, -7.7858)
-use_collision = true
-size = Vector3(5.47119, 1.59876, 4.72732)
-
-[node name="CSGBox3D8" type="CSGBox3D" parent="Map"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5064, 1.34239, -7.7858)
-use_collision = true
-size = Vector3(5.47119, 1.59876, 4.72732)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="Map"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.8866, 1.34239, -7.7858)
-use_collision = true
-size = Vector3(5.47119, 1.59876, 4.72732)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Map"]
 transform = Transform3D(0.774757, -0.632259, 0, 0.632259, 0.774757, 0, 0, 0, 1, 8.88622, -0.159974, -0.455744)

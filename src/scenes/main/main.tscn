@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://bq6usq7njb8xd"]
 
-[ext_resource type="Shader" path="res://src/scenes/main/main.gdshader" id="1_um1xw"]
+[ext_resource type="Shader" uid="uid://nq2mpdc05nl4" path="res://src/scenes/main/main.gdshader" id="1_um1xw"]
 [ext_resource type="Texture2D" uid="uid://c8skxedfihljp" path="res://src/assets/Heightmap.png" id="2_6el57"]
 [ext_resource type="PackedScene" uid="uid://duchts23k3yxm" path="res://src/scenes/player/player.tscn" id="3_pxifb"]
 
