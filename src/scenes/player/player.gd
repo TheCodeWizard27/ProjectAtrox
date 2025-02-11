@@ -74,6 +74,7 @@ func _physics_process(delta: float) -> void:
 	
 	_state.physics_process(delta)
 	_apply_movement(delta)
+	handle_collision()
 
 func _apply_movement(delta: float) -> void:
 	_body.move_and_slide()
