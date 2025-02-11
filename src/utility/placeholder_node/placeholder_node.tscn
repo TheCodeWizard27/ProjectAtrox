@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dormyrwil5a4h"]
+
+[ext_resource type="Script" uid="uid://cuiv8v05wqqly" path="res://src/utility/placeholder_node/placeholder_node.gd" id="1_063ra"]
+
+[node name="PlaceholderNode" type="Node3D"]
+script = ExtResource("1_063ra")

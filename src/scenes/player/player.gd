@@ -19,7 +19,7 @@ extends Node3D
 @onready var _state: StateMachine = %State
 @onready var _body: CharacterBody3D = %Body
 @onready var _camera_mount: CameraController = %CameraMount
-@onready var _weapon_placeholder: InstancePlaceholder = %WeaponPlaceholder
+@onready var _weapon_placeholder: PlaceholderNode = %WeaponPlaceholder
 
 var weapon: Weapon
 
@@ -42,15 +42,14 @@ func process_movement(delta: float, speed_modifier: float = 1):
 		_body.rotation.y = lerp_angle(_body.rotation.y, target, 10 * delta)
 
 func _equip_melee() -> void:
-	weapon = _weapon_placeholder \
-		.create_instance(true, preload("res://src/scenes/player/weapon/melee_weapon/melee_weapon.tscn"))
+	weapon = _weapon_placeholder.create_new(preload("res://src/scenes/player/weapon/melee_weapon/melee_weapon.tscn"))
 
 func _equip_ranged() -> void:
-	weapon = _weapon_placeholder \
-		.create_instance(true, preload("res://src/scenes/player/weapon/ranged_weapon/ranged_weapon.tscn"))
+	weapon = _weapon_placeholder.create_new(preload("res://src/scenes/player/weapon/ranged_weapon/ranged_weapon.tscn"))
 
 func _ready() -> void:
-	_equip_ranged()
+	#_equip_ranged()
+	_equip_melee()
 
 func _set_camera_active(value: bool) -> void:
 	_camera_mount.active = value
@@ -60,11 +59,11 @@ func _process(delta: float) -> void:
 		return
 	
 	# Idk how InstancePlaceholder works enough for this to work.
-	#if(Input.is_action_just_pressed("select_1")):
-		#_equip_melee()
-		#
-	#if(Input.is_action_just_pressed("select_2")):
-		#_equip_ranged()
+	if(Input.is_action_just_pressed("select_1")):
+		_equip_melee()
+		
+	if(Input.is_action_just_pressed("select_2")):
+		_equip_ranged()
 	
 	_state.process(delta)
 	
