@@ -7,7 +7,7 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_aiw85"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_g2ukt"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_knewe"]
 
 [node name="BaseEnemy" type="Node3D"]
 script = ExtResource("1_hgge1")
@@ -31,4 +31,4 @@ mesh = SubResource("BoxMesh_aiw85")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-shape = SubResource("BoxShape3D_g2ukt")
+shape = SubResource("BoxShape3D_knewe")

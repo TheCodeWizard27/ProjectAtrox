@@ -8,5 +8,5 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func physics_update(delta: float) -> void:
-	baseEnemy.chase();
+	baseEnemy.chase(delta);
 	pass
