@@ -78,3 +78,15 @@ func _physics_process(delta: float) -> void:
 
 func _apply_movement(delta: float) -> void:
 	_body.move_and_slide()
+	
+	var movement = Vector2(_body.velocity.x, _body.velocity.z)
+	
+	if(movement.length() > turn_threshold):
+		var target = Quaternion(Vector3.UP, Vector2(_body.velocity.z, _body.velocity.x).angle())
+		_body.basis = _body.basis.slerp(target, 0.2)
+		
+func handle_collision() -> void:
+	for i in _body.get_slide_collision_count():	
+		var collision = _body.get_slide_collision(i)
+		if(collision.get_collider().name == "CharacterBody3D"):
+			print("Ouch :< ", collision.get_collider().name)
