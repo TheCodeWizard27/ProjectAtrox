@@ -23,7 +23,7 @@ extends Node3D
 
 var weapon: Weapon
 
-func process_movement(delta: float, speed_modifier: float = 1):
+func process_movement(delta: float, speed_modifier: float = 1) -> void:
 	var move_dir = Vector3.ZERO
 	move_dir.x = Input.get_action_strength('ui_right') - Input.get_action_strength('ui_left')
 	move_dir.z = Input.get_action_strength('ui_down') - Input.get_action_strength('ui_up')
@@ -35,6 +35,9 @@ func process_movement(delta: float, speed_modifier: float = 1):
 	# TODO maybe using acceleration movement is not the way.
 	#_body.velocity = _body.velocity.move_toward(move_dir * max_speed, acceleration * delta)
 	_body.velocity.y = y_velocity - Globals.GRAVITY * delta
+	
+	if(speed_modifier <= 0):
+		return
 	
 	# Rotate Character body	
 	if(move_dir.length() > turn_threshold):

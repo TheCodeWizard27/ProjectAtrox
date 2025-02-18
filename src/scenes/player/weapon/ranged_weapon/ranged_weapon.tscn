@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://1abibfu7hvfy"]
+[gd_scene load_steps=10 format=3 uid="uid://1abibfu7hvfy"]
 
 [ext_resource type="Script" uid="uid://qpqoftt1npfl" path="res://src/scenes/player/weapon/ranged_weapon/ranged_weapon.gd" id="1_lpve6"]
 
@@ -13,6 +13,72 @@ size = Vector3(0.1, 0.15, 0.5)
 [sub_resource type="BoxMesh" id="BoxMesh_lpve6"]
 material = SubResource("StandardMaterial3D_70fa1")
 size = Vector3(0.04, 0.25, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_70fa1"]
+size = Vector3(0.4, 0.4, 0.4)
+
+[sub_resource type="Animation" id="Animation_lr6es"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transform/RayCast3D:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transform/Body:mesh:material:albedo_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Transform/Effect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Transform/Effect:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Transform/Effect:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0446086, 0.00102994, 0.791247)]
+}
 
 [sub_resource type="Animation" id="Animation_lpve6"]
 resource_name = "attack"
@@ -32,7 +98,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Transform/MeshInstance3D2:mesh:material:albedo_color")
+tracks/1/path = NodePath("Transform/Body:mesh:material:albedo_color")
 tracks/1/interp = 0
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -41,32 +107,41 @@ tracks/1/keys = {
 "update": 1,
 "values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
 }
-
-[sub_resource type="Animation" id="Animation_lr6es"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Transform/RayCast3D:enabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Transform/Effect:visible")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [true]
+"values": [false, true, false]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Transform/MeshInstance3D2:mesh:material:albedo_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Transform/Effect:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0666667, 0.166667),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Vector3(1.445, 1.445, 1.445), Vector3(1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Transform/Effect:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.0666667, 0.166667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.0446086, 0.00102994, 0.791247), Vector3(-0.42586, 0.762709, 0.336849)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_70fa1"]
@@ -76,21 +151,29 @@ _data = {
 }
 
 [node name="RangedWeapon" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_lpve6")
 
 [node name="Transform" type="Node3D" parent="."]
 transform = Transform3D(0.94754, 0, -0.319637, 0.0407806, 0.991828, 0.120891, 0.317025, -0.127584, 0.939796, 0, 0, 0)
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Transform"]
+[node name="Body" type="MeshInstance3D" parent="Transform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.139951, 0.197622)
 mesh = SubResource("BoxMesh_lsdl5")
-skeleton = NodePath("../MeshInstance3D")
+skeleton = NodePath("../Handle")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Transform"]
+[node name="Handle" type="MeshInstance3D" parent="Transform"]
 transform = Transform3D(1, 0, 0, 0, 0.937513, -0.34795, 0, 0.34795, 0.937513, 0, 0, 0)
 mesh = SubResource("BoxMesh_lpve6")
 skeleton = NodePath("../..")
+
+[node name="Effect" type="MeshInstance3D" parent="Transform"]
+transform = Transform3D(0.702926, -0.711263, 0.00102892, 0.710523, 0.70226, 0.0445938, -0.0324405, -0.0306151, 0.999005, -0.00488149, 0.147217, 0.743839)
+visible = false
+mesh = SubResource("BoxMesh_70fa1")
+
+[node name="Effect" type="MeshInstance3D" parent="Transform/Effect"]
+transform = Transform3D(0.467834, -0.828364, 0.308131, 0.708678, 0.559917, 0.429267, -0.528117, 0.01754, 0.848991, -0.000949815, 0.00989601, 0.0230486)
+mesh = SubResource("BoxMesh_70fa1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Transform"]
 unique_name_in_owner = true
