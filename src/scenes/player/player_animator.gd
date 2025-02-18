@@ -23,6 +23,10 @@ var _attack_type = "parameters/attack/blend_position"
 
 signal on_attack_finished()
 
+func play_particles() -> void:
+	%Particles.emitting = true
+	%Particles.restart()
+
 func advance_falling_to(target_value: float, delta: float) -> void:
 	var new_value = lerpf(get(_falling_blend_amount), target_value, delta * _falling_blend_speed)
 	set(_falling_blend_amount, new_value)
