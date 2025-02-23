@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="ProjectAtrox"
-run/main_scene="res://src/scenes/main/main.tscn"
+run/main_scene="uid://dts652m1yys3n"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
