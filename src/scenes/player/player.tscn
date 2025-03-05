@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://duchts23k3yxm"]
+[gd_scene load_steps=37 format=3 uid="uid://duchts23k3yxm"]
 
 [ext_resource type="Script" uid="uid://bcmfdvyi5u6qq" path="res://src/scenes/player/player.gd" id="1_6dcuc"]
 [ext_resource type="Script" uid="uid://bokcde7p810nc" path="res://src/utility/state_machine/state_machine.gd" id="1_vniht"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" uid="uid://dvoyfic853sv3" path="res://src/scenes/player/player_animator.gd" id="8_nq300"]
 [ext_resource type="Script" uid="uid://b4mr1vsh3u6tf" path="res://src/scenes/player/states/attacking.gd" id="9_hvnhx"]
 [ext_resource type="Texture2D" uid="uid://c7xl03e4gix3p" path="res://src/assets/particles-single.png" id="12_l84wi"]
+[ext_resource type="Script" uid="uid://81hxdtu3r3xj" path="res://src/scenes/player/hud.gd" id="13_sm61a"]
+[ext_resource type="Texture2D" uid="uid://b3dtqxbu1e2cj" path="res://src/assets/hud/crosshair158.png" id="14_ashbf"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gngtj"]
 
@@ -116,6 +118,11 @@ nodes/running/node = SubResource("AnimationNodeBlendSpace1D_y8knu")
 nodes/running/position = Vector2(80, -100)
 node_connections = [&"attack_one_shot", 0, &"running", &"attack_one_shot", 1, &"attack", &"falling", 0, &"attack_one_shot", &"falling", 1, &"Animation", &"output", 0, &"falling"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_ashbf"]
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+outline_size = 3
+
 [node name="Player" type="Node3D"]
 script = ExtResource("1_6dcuc")
 
@@ -182,40 +189,40 @@ bones/34/rotation = Quaternion(-0.660195, 0.688403, -0.242271, -0.177618)
 [node name="botter_animated" parent="Body" instance=ExtResource("3_p5nxa")]
 
 [node name="rig" parent="Body/botter_animated" index="0"]
-transform = Transform3D(1.10436, 0.0053175, -0.0354353, -0.0037225, 1.1038, 0.0496285, 0.0356388, -0.0494831, 1.10324, -0.0385739, -0.0223084, 0.0399892)
+transform = Transform3D(1.10493, 0.00481887, -0.000547886, -0.00478786, 1.10369, 0.05195, 0.000773855, -0.051947, 1.1037, -0.0646996, -0.0282731, 0.0488197)
 
 [node name="Skeleton3D" parent="Body/botter_animated/rig" index="0"]
 bones/0/rotation = Quaternion(0.12582, 9.29211e-10, 1.1785e-10, 0.992053)
-bones/1/rotation = Quaternion(-0.15151, -0.0028386, 0.00238549, 0.988449)
-bones/2/rotation = Quaternion(0.0280775, -0.0274966, 0.00301909, 0.999223)
-bones/3/rotation = Quaternion(0.0109053, -0.0273897, 0.00410525, 0.999557)
-bones/4/rotation = Quaternion(0.192755, 0.0078608, -0.00796528, 0.981183)
-bones/5/rotation = Quaternion(0.687782, -0.00213513, -0.0109855, 0.725831)
-bones/6/rotation = Quaternion(-0.82028, -0.000115349, -0.0112782, 0.571851)
-bones/8/rotation = Quaternion(-0.623954, -0.316638, -0.308338, 0.644476)
-bones/9/rotation = Quaternion(-0.106597, 0.752113, -0.590994, 0.271458)
-bones/10/rotation = Quaternion(0.276729, 0.210651, 0.0321792, 0.937023)
-bones/11/rotation = Quaternion(-0.173316, -0.26962, -0.0242711, 0.94693)
+bones/1/rotation = Quaternion(-0.150308, -0.00262725, 0.00378976, 0.988629)
+bones/2/rotation = Quaternion(0.0294339, -0.0275947, 0.00627875, 0.999166)
+bones/3/rotation = Quaternion(0.0120892, -0.0273246, 0.00732884, 0.999527)
+bones/4/rotation = Quaternion(0.203364, 0.0063978, -0.00836467, 0.979047)
+bones/5/rotation = Quaternion(0.695613, -0.00332102, -0.0100135, 0.718339)
+bones/6/rotation = Quaternion(-0.814059, -0.00141613, -0.0105209, 0.580686)
+bones/8/rotation = Quaternion(-0.628998, -0.305734, -0.329995, 0.634028)
+bones/9/rotation = Quaternion(-0.058062, 0.765698, -0.592377, 0.243772)
+bones/10/rotation = Quaternion(0.278759, 0.210385, 0.0328838, 0.936456)
+bones/11/rotation = Quaternion(-0.162802, -0.284484, -0.0356503, 0.944083)
 bones/12/rotation = Quaternion(0.0240571, 0.0443863, -0.237545, 0.970064)
-bones/13/rotation = Quaternion(-0.597668, 0.348707, 0.372186, 0.618606)
-bones/14/rotation = Quaternion(-0.0683788, -0.744663, 0.59292, 0.298743)
-bones/15/rotation = Quaternion(0.278626, -0.210403, -0.0328373, 0.936494)
-bones/16/rotation = Quaternion(-0.209653, 0.299681, -0.0483934, 0.92946)
+bones/13/rotation = Quaternion(-0.596127, 0.348717, 0.384001, 0.61284)
+bones/14/rotation = Quaternion(-0.0659185, -0.747025, 0.591508, 0.296187)
+bones/15/rotation = Quaternion(0.275839, -0.210767, -0.0318709, 0.93727)
+bones/16/rotation = Quaternion(-0.212288, 0.301963, -0.0508753, 0.927989)
 bones/16/scale = Vector3(1, 1, 1)
 bones/17/rotation = Quaternion(-0.0219921, -0.0320753, 0.117901, 0.992263)
 bones/18/rotation = Quaternion(-2.89287e-07, 0.696936, 0.717134, -2.41041e-07)
 bones/20/rotation = Quaternion(-2.89424e-07, 0.696936, 0.717134, -2.40566e-07)
-bones/26/rotation = Quaternion(0.980974, 0.0259722, -0.0577969, 0.183509)
-bones/27/rotation = Quaternion(0.219885, -0.0752561, -0.0305808, 0.972138)
-bones/28/rotation = Quaternion(0.00839314, -0.716976, 0.144988, 0.681802)
-bones/29/rotation = Quaternion(0.0297739, -0.670862, 0.740591, -0.0241295)
-bones/31/rotation = Quaternion(0.976792, -0.0184132, 0.0863457, 0.195147)
-bones/32/rotation = Quaternion(0.22286, 0.0329438, 0.0191827, 0.974105)
-bones/33/rotation = Quaternion(-0.000348641, 0.70575, -0.128849, 0.696645)
-bones/34/rotation = Quaternion(-0.027855, -0.670923, 0.740666, 0.022391)
+bones/26/rotation = Quaternion(0.979011, 0.0375525, -0.0527076, 0.193259)
+bones/27/rotation = Quaternion(0.23942, -0.0792506, -0.0372101, 0.966961)
+bones/28/rotation = Quaternion(0.0110923, -0.703693, 0.155916, 0.693097)
+bones/29/rotation = Quaternion(0.0287445, -0.670895, 0.740632, -0.0231971)
+bones/31/rotation = Quaternion(0.975731, -0.00827901, 0.0832133, 0.202377)
+bones/32/rotation = Quaternion(0.25086, 0.0307363, 0.018001, 0.967368)
+bones/33/rotation = Quaternion(-0.0212883, 0.718629, -0.139955, 0.680831)
+bones/34/rotation = Quaternion(-0.0280873, -0.670916, 0.740657, 0.0226015)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Body/botter_animated/rig/Skeleton3D" index="10"]
-transform = Transform3D(-0.898466, -0.353465, 0.260425, 0.381699, -0.921962, 0.0655154, 0.216945, 0.158267, 0.963268, -0.397481, 0.92613, 0.133068)
+transform = Transform3D(-0.903472, -0.328398, 0.275486, 0.355692, -0.933025, 0.0542852, 0.239208, 0.147033, 0.959771, -0.378889, 0.911283, 0.132738)
 bone_name = "ORG-hand.R"
 bone_idx = 16
 
@@ -239,7 +246,7 @@ margin = 0.2
 [node name="Camera3D" type="Camera3D" parent="CameraMount/CameraArm"]
 
 [node name="RightHand" type="Node3D" parent="."]
-transform = Transform3D(-0.977903, -0.329396, 0.395087, 0.400061, -1.02048, 0.139413, 0.323324, 0.266432, 1.02241, -0.496907, 0.798281, 0.176877)
+transform = Transform3D(-0.969218, -0.29287, 0.442423, 0.372347, -1.0318, 0.132684, 0.377968, 0.265475, 1.00375, -0.491407, 0.775307, 0.195192)
 
 [node name="WeaponContainer" type="Node3D" parent="RightHand"]
 transform = Transform3D(-0.972067, -0.129259, -0.195899, -0.208227, 0.0898706, 0.973943, -0.108286, 0.98753, -0.114275, 0.00305516, -0.124844, 0.0128797)
@@ -289,6 +296,53 @@ parameters/attack_one_shot/request = 0
 parameters/falling/blend_amount = 0.0
 parameters/running/blend_position = 0.0
 script = ExtResource("8_nq300")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("13_sm61a")
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -47.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "10/10"
+label_settings = SubResource("LabelSettings_ashbf")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -36.0
+offset_right = 36.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_ashbf")
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control"]
+layout_mode = 1
+offset_right = 227.0
+offset_bottom = 27.0
+max_value = 15.0
 
 [connection signal="animation_finished" from="AnimationTree" to="AnimationTree" method="_on_animation_finished"]
 
