@@ -21,12 +21,10 @@ extends Node3D
 @onready var _camera_mount: CameraController = %CameraMount
 @onready var _weapon_placeholder: PlaceholderNode = %WeaponPlaceholder
 
-#don't kill me benny
 #stats
 @export var health = 15
 @export var max_ammo = 10
 @export var curr_ammo = 10
-
 
 var weapon: Weapon
 

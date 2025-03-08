@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://dvoyfic853sv3" path="res://src/scenes/player/player_animator.gd" id="8_nq300"]
 [ext_resource type="Script" uid="uid://b4mr1vsh3u6tf" path="res://src/scenes/player/states/attacking.gd" id="9_hvnhx"]
 [ext_resource type="Texture2D" uid="uid://c7xl03e4gix3p" path="res://src/assets/particles-single.png" id="12_l84wi"]
-[ext_resource type="Script" uid="uid://81hxdtu3r3xj" path="res://src/scenes/player/hud.gd" id="13_sm61a"]
+[ext_resource type="Script" path="res://src/scenes/player/hud.gd" id="13_sm61a"]
 [ext_resource type="Texture2D" uid="uid://b3dtqxbu1e2cj" path="res://src/assets/hud/crosshair158.png" id="14_ashbf"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gngtj"]
@@ -189,40 +189,40 @@ bones/34/rotation = Quaternion(-0.660195, 0.688403, -0.242271, -0.177618)
 [node name="botter_animated" parent="Body" instance=ExtResource("3_p5nxa")]
 
 [node name="rig" parent="Body/botter_animated" index="0"]
-transform = Transform3D(1.10493, 0.00481887, -0.000547886, -0.00478786, 1.10369, 0.05195, 0.000773855, -0.051947, 1.1037, -0.0646996, -0.0282731, 0.0488197)
+transform = Transform3D(1.10472, 0.0177132, -0.0134343, -0.0171369, 1.10382, 0.0462514, 0.0141626, -0.0460337, 1.10387, -0.0463338, -0.0241952, 0.0423361)
 
 [node name="Skeleton3D" parent="Body/botter_animated/rig" index="0"]
 bones/0/rotation = Quaternion(0.12582, 9.29211e-10, 1.1785e-10, 0.992053)
-bones/1/rotation = Quaternion(-0.150308, -0.00262725, 0.00378976, 0.988629)
-bones/2/rotation = Quaternion(0.0294339, -0.0275947, 0.00627875, 0.999166)
-bones/3/rotation = Quaternion(0.0120892, -0.0273246, 0.00732884, 0.999527)
-bones/4/rotation = Quaternion(0.203364, 0.0063978, -0.00836467, 0.979047)
-bones/5/rotation = Quaternion(0.695613, -0.00332102, -0.0100135, 0.718339)
-bones/6/rotation = Quaternion(-0.814059, -0.00141613, -0.0105209, 0.580686)
-bones/8/rotation = Quaternion(-0.628998, -0.305734, -0.329995, 0.634028)
-bones/9/rotation = Quaternion(-0.058062, 0.765698, -0.592377, 0.243772)
-bones/10/rotation = Quaternion(0.278759, 0.210385, 0.0328838, 0.936456)
-bones/11/rotation = Quaternion(-0.162802, -0.284484, -0.0356503, 0.944083)
+bones/1/rotation = Quaternion(-0.15145, -0.00254629, 0.00236766, 0.988459)
+bones/2/rotation = Quaternion(0.0271308, -0.02606, 0.00314027, 0.999287)
+bones/3/rotation = Quaternion(0.00993151, -0.0259114, 0.00404277, 0.999607)
+bones/4/rotation = Quaternion(0.200665, 0.00708426, -0.00682829, 0.979611)
+bones/5/rotation = Quaternion(0.693624, -0.00163528, -0.00970258, 0.72027)
+bones/6/rotation = Quaternion(-0.815653, 0.00012923, -0.0099224, 0.578456)
+bones/8/rotation = Quaternion(-0.623815, -0.315361, -0.322483, 0.638284)
+bones/9/rotation = Quaternion(-0.0872397, 0.757167, -0.592395, 0.261067)
+bones/10/rotation = Quaternion(0.276289, 0.210708, 0.0320269, 0.937145)
+bones/11/rotation = Quaternion(-0.168904, -0.278928, -0.0318648, 0.944804)
 bones/12/rotation = Quaternion(0.0240571, 0.0443863, -0.237545, 0.970064)
-bones/13/rotation = Quaternion(-0.596127, 0.348717, 0.384001, 0.61284)
-bones/14/rotation = Quaternion(-0.0659185, -0.747025, 0.591508, 0.296187)
-bones/15/rotation = Quaternion(0.275839, -0.210767, -0.0318709, 0.93727)
-bones/16/rotation = Quaternion(-0.212288, 0.301963, -0.0508753, 0.927989)
+bones/13/rotation = Quaternion(-0.595195, 0.35089, 0.379437, 0.615343)
+bones/14/rotation = Quaternion(-0.074501, -0.742362, 0.596215, 0.296439)
+bones/15/rotation = Quaternion(0.275609, -0.210797, -0.0317912, 0.937333)
+bones/16/rotation = Quaternion(-0.209565, 0.301785, -0.0542423, 0.928475)
 bones/16/scale = Vector3(1, 1, 1)
 bones/17/rotation = Quaternion(-0.0219921, -0.0320753, 0.117901, 0.992263)
 bones/18/rotation = Quaternion(-2.89287e-07, 0.696936, 0.717134, -2.41041e-07)
 bones/20/rotation = Quaternion(-2.89424e-07, 0.696936, 0.717134, -2.40566e-07)
-bones/26/rotation = Quaternion(0.979011, 0.0375525, -0.0527076, 0.193259)
-bones/27/rotation = Quaternion(0.23942, -0.0792506, -0.0372101, 0.966961)
-bones/28/rotation = Quaternion(0.0110923, -0.703693, 0.155916, 0.693097)
-bones/29/rotation = Quaternion(0.0287445, -0.670895, 0.740632, -0.0231971)
-bones/31/rotation = Quaternion(0.975731, -0.00827901, 0.0832133, 0.202377)
-bones/32/rotation = Quaternion(0.25086, 0.0307363, 0.018001, 0.967368)
-bones/33/rotation = Quaternion(-0.0212883, 0.718629, -0.139955, 0.680831)
-bones/34/rotation = Quaternion(-0.0280873, -0.670916, 0.740657, 0.0226015)
+bones/26/rotation = Quaternion(0.980124, 0.0297553, -0.0461248, 0.190639)
+bones/27/rotation = Quaternion(0.233181, -0.0797983, -0.0336826, 0.968568)
+bones/28/rotation = Quaternion(0.00384095, -0.71274, 0.152761, 0.684581)
+bones/29/rotation = Quaternion(0.0289625, -0.670888, 0.740623, -0.0233946)
+bones/31/rotation = Quaternion(0.976478, -0.0151181, 0.0963666, 0.19229)
+bones/32/rotation = Quaternion(0.223013, 0.020475, 0.0164726, 0.974461)
+bones/33/rotation = Quaternion(-0.000854707, 0.713447, -0.133818, 0.687812)
+bones/34/rotation = Quaternion(-0.0277052, -0.670927, 0.740671, 0.0222553)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Body/botter_animated/rig/Skeleton3D" index="10"]
-transform = Transform3D(-0.903472, -0.328398, 0.275486, 0.355692, -0.933025, 0.0542852, 0.239208, 0.147033, 0.959771, -0.378889, 0.911283, 0.132738)
+transform = Transform3D(-0.9009, -0.341305, 0.268123, 0.371935, -0.925492, 0.0716147, 0.223703, 0.164242, 0.960719, -0.383407, 0.921081, 0.138702)
 bone_name = "ORG-hand.R"
 bone_idx = 16
 
@@ -246,7 +246,7 @@ margin = 0.2
 [node name="Camera3D" type="Camera3D" parent="CameraMount/CameraArm"]
 
 [node name="RightHand" type="Node3D" parent="."]
-transform = Transform3D(-0.969218, -0.29287, 0.442423, 0.372347, -1.0318, 0.132684, 0.377968, 0.265475, 1.00375, -0.491407, 0.775307, 0.195192)
+transform = Transform3D(-0.967835, -0.322526, 0.424459, 0.400942, -1.02018, 0.139023, 0.351319, 0.275793, 1.01063, -0.473762, 0.795757, 0.198232)
 
 [node name="WeaponContainer" type="Node3D" parent="RightHand"]
 transform = Transform3D(-0.972067, -0.129259, -0.195899, -0.208227, 0.0898706, 0.973943, -0.108286, 0.98753, -0.114275, 0.00305516, -0.124844, 0.0128797)
@@ -336,6 +336,8 @@ offset_right = 36.0
 offset_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(36, 36)
 texture = ExtResource("14_ashbf")
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control"]

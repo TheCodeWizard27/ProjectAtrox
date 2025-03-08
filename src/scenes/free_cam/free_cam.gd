@@ -28,11 +28,11 @@ func _physics_process(delta: float) -> void:
 	
 	position = lerp(position, position + move_dir * _speed, delta)
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if(not active):
 		return
 	
-	super._unhandled_input(event)
+	super._input(event)
 	
 	if(event is InputEventMouseButton):
 		match(event.button_index):

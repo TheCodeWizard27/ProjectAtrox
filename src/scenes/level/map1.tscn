@@ -1,0 +1,190 @@
+[gd_scene load_steps=19 format=3 uid="uid://jw8gcy6vjnt8"]
+
+[ext_resource type="PackedScene" uid="uid://duchts23k3yxm" path="res://src/scenes/player/player.tscn" id="1_6dc15"]
+[ext_resource type="Shader" uid="uid://bb4bph2ro8t2u" path="res://src/scenes/level/map1.tres" id="2_qivh2"]
+[ext_resource type="Texture2D" uid="uid://b7jxoxa6oykuf" path="res://src/assets/textures/walls/dry_riverbed_rock_diff_4k.png" id="3_qhlot"]
+[ext_resource type="Texture2D" uid="uid://rxgydouhfyna" path="res://src/assets/textures/walls/dry_riverbed_rock_nor_gl_4k.png" id="4_qitpp"]
+[ext_resource type="Texture2D" uid="uid://d2rqv30k3k7fc" path="res://src/assets/textures/walls/dry_riverbed_rock_rough_4k.png" id="5_qitpp"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6dc15"]
+sky_top_color = Color(0.607615, 0.372392, 0.389763, 1)
+sky_horizon_color = Color(0.524167, 0.637584, 0.977506, 1)
+sky_curve = 0.27991
+
+[sub_resource type="Sky" id="Sky_6dc15"]
+sky_material = SubResource("ProceduralSkyMaterial_6dc15")
+
+[sub_resource type="Environment" id="Environment_qivh2"]
+background_mode = 2
+sky = SubResource("Sky_6dc15")
+sdfgi_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jmd4k"]
+render_priority = 0
+shader = ExtResource("2_qivh2")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jmd4k"]
+material = SubResource("ShaderMaterial_jmd4k")
+size = Vector2(320, 320)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_qivh2"]
+data = PackedVector3Array(160, 0, 160, -160, 0, 160, 160, 0, -160, -160, 0, 160, -160, 0, -160, 160, 0, -160)
+
+[sub_resource type="Curve3D" id="Curve3D_qivh2"]
+closed = true
+_data = {
+"points": PackedVector3Array(1.45582, -2.86102e-06, -8.47948, -1.45582, 2.86102e-06, 8.47948, 5.79869, -2.86102e-06, -145.138, -1.29436, 0, -11.2794, 1.29436, 0, 11.2794, 5.89114, -2.86102e-06, -117.125, 12.2859, -2.86102e-06, -5.55766, -12.2859, 2.86102e-06, 5.55766, -26.3648, 0, -101.675, 4.90936, -2.86102e-06, -2.26012, -4.90936, 2.86102e-06, 2.26012, -69.8301, 0, -101.525, 3.097, -2.86102e-06, -6.25973, -3.097, 2.86102e-06, 6.25973, -92.6105, 0, -83.3802, 4.48381, -2.86102e-06, -4.37007, -4.48381, 2.86102e-06, 4.37007, -92.6105, 0, -64.5602, 5.672, -2.86102e-06, -1.84096, -5.672, 2.86102e-06, 1.84096, -115.911, 0, -62.9172, 5.84447, -2.86102e-06, -6.71354, -5.84447, 2.86102e-06, 6.71354, -131.894, 0, -54.254, -0.406418, -2.86102e-06, -8.69213, 0.406418, 2.86102e-06, 8.69213, -135.628, 0, -40.8112, -5.77615, -2.86102e-06, -4.88232, 5.77615, 2.86102e-06, 4.88232, -132.939, 0, -21.6924, -4.79687, -2.86102e-06, -5.38797, 4.79687, 2.86102e-06, 5.38797, -113.671, 0, -15.2697, 0, 0, 0, 0, 0, 0, -111.259, 0, 5.90974, 0, 0, 0, 0, 0, 0, -110.382, 0, 21.2648, 0, 0, 0, 0, 0, 0, -109.066, 0, 38.8134, -4.38914, -2.86102e-06, -5.62657, 4.38914, 2.86102e-06, 5.62657, -105.556, 0, 55.0458, -8.07495, -2.86102e-06, -4.46295, 8.07495, 2.86102e-06, 4.46295, -93.8582, -2.86102e-06, 63.6571, 0, 0, 0, 0, 0, 0, -66.5104, 0, 71.2782, 0, 0, 0, 0, 0, 0, -31.4132, 0, 73.4718, 0, 0, 0, 0, 0, 0, -31.8519, 0, 88.3881, 6.78244, -2.86102e-06, -2.18482, -6.78244, 2.86102e-06, 2.18482, -54.6651, 0, 93.214, 5.77133, -2.86102e-06, -4.21528, -5.77133, 2.86102e-06, 4.21528, -71.775, 0, 96.7237, 2.43243, -2.86102e-06, -4.41315, -2.43243, 2.86102e-06, 4.41315, -82.3042, 0, 106.814, 0.0686722, -2.86102e-06, -5.30001, -0.0686722, 2.86102e-06, 5.30001, -88.4462, 0, 121.292, -3.62772, -2.86102e-06, -5.14635, 3.62772, 2.86102e-06, 5.14635, -86.6913, 0, 136.208, -6.52325, -2.86102e-06, -0.81572, 6.52325, 2.86102e-06, 0.81572, -70.0201, 0, 144.544, -6.06055, -2.86102e-06, 4.90395, 6.06055, 2.86102e-06, -4.90395, 65.5427, 0, 144.982, -1.98557, -2.86102e-06, 9.14268, 1.98557, 2.86102e-06, -9.14268, 72.5621, 0, 130.943, 1.92105, -2.86102e-06, 4.01831, -1.92105, 2.86102e-06, -4.01831, 73.0009, 0, 114.711, 3.77955, -2.86102e-06, 1.9484, -3.77955, 2.86102e-06, -1.9484, 59.4007, 0, 101.988, 0, 0, 0, 0, 0, 0, 37.0263, 0, 96.285, 0, 0, 0, 0, 0, 0, 14.2131, 0, 91.4591, 2.31354, -2.86102e-06, 4.77091, -2.31354, 2.86102e-06, -4.77091, -1.58062, 0, 88.3881, -3.85907, -2.86102e-06, 3.85404, 3.85907, 2.86102e-06, -3.85404, -2.89678, 0, 73.0331, -6.46096, -2.86102e-06, 1.93507, 6.46096, 2.86102e-06, -1.93507, 46.678, 0, 65.575, -6.4198, -2.86102e-06, 4.99726, 6.4198, 2.86102e-06, -4.99726, 64.6653, 0, 53.7297, -2.43188, -2.86102e-06, 5.58673, 2.43188, 2.86102e-06, -5.58673, 76.9493, 0, 42.3231, 0, 0, 0, 0, 0, 0, 78.7041, 0, 26.5293, -3.22, -2.86102e-06, 4.09398, 3.22, 2.86102e-06, -4.09398, 79.5816, 0, 3.71618, 0, 0, 0, 0, 0, 0, 91.8505, 0, -12.4305, -2.47565, -2.86102e-06, 6.16166, 2.47565, 2.86102e-06, -6.16166, 105.451, 0, -26.4694, 0, 0, 0, 0, 0, 0, 108.083, 0, -44.018, 4.50513, -2.86102e-06, 5.00637, -4.50513, 2.86102e-06, -5.00637, 101.941, 0, -58.9343, 5.0787, -2.86102e-06, 1.35292, -5.0787, 2.86102e-06, -1.35292, 81.3214, 0, -66.3924, 4.50983, -2.86102e-06, 4.56171, -4.50983, 2.86102e-06, -4.56171, 67.2825, 0, -70.3409, 0, 0, 0, 0, 0, 0, 60.7018, 0, -87.4507, 2.30569, -2.86102e-06, 5.77896, -2.30569, 2.86102e-06, -5.77896, 58.9469, 0, -101.051, 5.67053, -2.86102e-06, 2.46358, -5.67053, 2.86102e-06, -2.46358, 49.2952, 0, -111.141, 1.71984, -2.86102e-06, 5.36928, -1.71984, 2.86102e-06, -5.36928, 29.9918, 0, -115.967, -0.989902, -2.86102e-06, 5.43606, 0.989902, 2.86102e-06, -5.43606, 30.4112, 0, -131.608, 2.21658, -2.86102e-06, 7.73721, -2.21658, 2.86102e-06, -7.73721, 30.8692, 0, -145.361),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 50
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vrmap"]
+albedo_texture = ExtResource("3_qhlot")
+roughness_texture = ExtResource("5_qitpp")
+normal_enabled = true
+normal_texture = ExtResource("4_qitpp")
+uv1_scale = Vector3(1, 60, 1)
+
+[sub_resource type="Curve3D" id="Curve3D_jmd4k"]
+closed = true
+_data = {
+"points": PackedVector3Array(-3.66626, 0, -0.00296783, 3.66626, 0, 0.00296783, 0.874222, 0, -113, -5.09009, 0, -5.29923, 5.09009, 0, 5.29923, 1.85387, 0, -83.503, -3.32914, 0, 4.13446, 3.32914, 0, -4.13446, 24.4947, 0, -83.3773, -4.08383, 0, 6.77589, 4.08383, 0, -6.77589, 24.8721, 0, -112.81, 0, 0, 0, 0, 0, 0, 38.9009, 0, -105.783, -1.19736, 0, -9.63422, 1.19736, 0, 9.63422, 46.054, 0, -83.0735, 5.59492, 0, -8.12482, -5.59492, 0, 8.12482, 26.0057, 0, -71.5913, -3.83878, 0, -14.6655, 3.83878, 0, 14.6655, 22.6096, 0, -46.309, -2.82298, 0, -8.82895, 2.82298, 0, 8.82895, 55.5646, 0, -11.3414, 7.92508, 0, -12.1665, -7.92508, 0, 12.1665, 46.9932, 0, 24.235, 8.62606, 0, 8.90514, -8.62606, 0, -8.90514, -8.72852, 0, 25.7443, 7.87136, 0, 11.5466, -7.87136, 0, -11.5466, -6.40917, 0, -14.9973, 8.90523, 0, -10.6443, -8.90523, 0, 10.6443, -37.1277, 0, -16.5793, 5.88646, 0, -8.00289, -5.88646, 0, 8.00289, -36.8762, 0, 25.432, 9.78571, 0, 34.1343, -9.78571, 0, -34.1343, -98.1638, 0, 21.3149, -8.83011, 0, 8.09729, 8.83011, 0, -8.09729, -93.3526, 0, -29.4092, -4.59571, 0, 6.77612, 4.59571, 0, -6.77612, -55.1147, 0, -40.3523, 4.46063, 0, 8.91442, -4.46063, 0, -8.91442, -55.2404, 0, -67.0182, 0, 0, 0, 0, 0, 0, -80.0196, 0, -78.9675, -11.607, 0, 6.92402, 11.607, 0, -6.92402, -76.185, 0, -102.356, 0, 0, 0, 0, 0, 0, -48.0097, 0, -104.62, 0, 0, 0, 0, 0, 0, -24.6142, 0, -106.507, 0, 0, 0, 0, 0, 0, -7.25615, 0, -110.155),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 23
+
+[sub_resource type="BoxMesh" id="BoxMesh_qitpp"]
+size = Vector3(20, 1, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gh4c1"]
+albedo_color = Color(0.612299, 1.50409e-06, 5.77569e-07, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vrmap"]
+size = Vector3(2, 1, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gh4c1"]
+size = Vector3(30, 1, 5)
+
+[node name="World" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.275217, -0.222684, 0.935237, -0.737285, 0.575423, 0.353976, -0.616981, -0.786957, -0.00581505, 29.2008, 7.18791, 0.836566)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qivh2")
+
+[node name="Player" parent="." instance=ExtResource("1_6dc15")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.7661, 0.414231, 46.4131)
+
+[node name="Map" type="Node3D" parent="."]
+
+[node name="ground" type="MeshInstance3D" parent="Map"]
+mesh = SubResource("PlaneMesh_jmd4k")
+skeleton = NodePath("")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Map/ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/ground/StaticBody3D2"]
+shape = SubResource("ConcavePolygonShape3D_qivh2")
+
+[node name="OuterWalls" type="Path3D" parent="Map"]
+curve = SubResource("Curve3D_qivh2")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Map/OuterWalls"]
+transform = Transform3D(1, 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_vrmap")
+use_collision = true
+polygon = PackedVector2Array(0, 0, -0.0615785, 0.303644, -0.0566368, 0.395601, -0.0322846, 0.652084, 0.0206015, 0.847414, 5.20349e-05, 1.03109, -0.0317203, 1.36817, 0.0626678, 1.79794, 0.0264651, 2.2616, 0.0456337, 2.75005, 0.129595, 2.81244, 0.235694, 2.81014, 0.45274, 2.81505, 0.504911, 2.89042, 0.527655, 2.86543, 0.572065, 2.87183, 0.605732, 2.83898, 0.68076, 2.83875, 0.782843, 2.8122, 0.826901, 2.75946, 0.745557, 2.84183, 1.02928, 2.74892, 0.988602, 2.50582, 1.03998, 2.33434, 0.987319, 2.08486, 1.00147, 1.76026, 1.04299, 1.54158, 0.993858, 1.27029, 1.02606, 1.03708, 0.980412, 0.799072, 0.943955, 0.556682, 1.00577, 0.355288, 0.999252, 0.177479, 1, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+
+[node name="InnerWalls" type="Path3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.95908, 0, 18.0576)
+curve = SubResource("Curve3D_jmd4k")
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="Map/InnerWalls"]
+transform = Transform3D(1, 0, 0, 0, 4, 0, 0, 0, 1, -4.95908, 0, -18.0576)
+material_override = SubResource("StandardMaterial3D_vrmap")
+use_collision = true
+polygon = PackedVector2Array(0, 0, -0.0615785, 0.303644, -0.0566368, 0.395601, -0.0322846, 0.652084, 0.0206015, 0.847414, 5.20349e-05, 1.03109, -0.0317203, 1.36817, 0.0626678, 1.79794, 0.0264651, 2.2616, 0.0456337, 2.75005, 0.129595, 2.81244, 0.235694, 2.81014, 0.45274, 2.81505, 0.504911, 2.89042, 0.527655, 2.86543, 0.572065, 2.87183, 0.605732, 2.83898, 0.68076, 2.83875, 0.782843, 2.8122, 0.826901, 2.75946, 0.745557, 2.84183, 1.02928, 2.74892, 0.988602, 2.50582, 1.03998, 2.33434, 0.987319, 2.08486, 1.00147, 1.76026, 1.04299, 1.54158, 0.993858, 1.27029, 1.02606, 1.03708, 0.980412, 0.799072, 0.943955, 0.556682, 1.00577, 0.355288, 0.999252, 0.177479, 1, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+
+[node name="jump_puzzle_1" type="Node3D" parent="Map"]
+
+[node name="deathbox" type="CSGMesh3D" parent="Map/jump_puzzle_1"]
+transform = Transform3D(1.43134, 0, 0, 0, 1.43134, 0, 0, 0, 4.76037, 17.8776, -0.443521, -81.7468)
+mesh = SubResource("BoxMesh_qitpp")
+material = SubResource("StandardMaterial3D_gh4c1")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Map/jump_puzzle_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.8701, 0.7554, -90.5126)
+use_collision = true
+mesh = SubResource("BoxMesh_vrmap")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="Map/jump_puzzle_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.8701, 0.7554, -77.6947)
+use_collision = true
+mesh = SubResource("BoxMesh_vrmap")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="Map/jump_puzzle_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.3875, 0.7554, -83.4784)
+use_collision = true
+mesh = SubResource("BoxMesh_vrmap")
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="Map/jump_puzzle_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.8762, 0.712873, -73.2807)
+use_collision = true
+mesh = SubResource("BoxMesh_vrmap")
+
+[node name="jump_puzzle_2" type="Node3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.4198, 0, 112.526)
+
+[node name="deathbox" type="CSGMesh3D" parent="Map/jump_puzzle_2"]
+transform = Transform3D(1.43134, 0, 0, 0, 1.43134, 0, 0, 0, 4.76037, 17.8776, -0.443521, -81.7468)
+mesh = SubResource("BoxMesh_gh4c1")
+material = SubResource("StandardMaterial3D_gh4c1")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Map/jump_puzzle_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.986, 0.75, -73.33)
+use_collision = true
+mesh = SubResource("BoxMesh_vrmap")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="Map/jump_puzzle_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8333, 0.75, -79.9254)
+use_collision = true
+mesh = SubResource("BoxMesh_vrmap")
+
+[node name="CSGMesh3D5" type="CSGMesh3D" parent="Map/jump_puzzle_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0551, 0.75, -76.9117)
+use_collision = true
+mesh = SubResource("BoxMesh_vrmap")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="Map/jump_puzzle_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.96, 0.75, -84.1547)
+use_collision = true
+mesh = SubResource("BoxMesh_vrmap")
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="Map/jump_puzzle_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.1864, 0.75, -89.1807)
+use_collision = true
+mesh = SubResource("BoxMesh_vrmap")

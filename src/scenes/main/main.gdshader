@@ -17,9 +17,9 @@ void fragment(){
 	float height_left = get_height(UV - vec2(offset, 0.0));
 	float height_up = get_height(UV + vec2(0.0, offset));
 	float height_down = get_height(UV - vec2(0.0, offset));
-	vec3 normal = normalize(vec3(height_left - height_right, 2.0 * offset, height_down - height_up)); 
+	vec3 normal = normalize(vec3(height_left - height_right, 2.0 * offset, height_down - height_up));
 	NORMAL = normal;
-	
+
 	//ALBEDO = texture(surface, UV).rgb;
 	//vec3 east = vec3(UV.x, get_height(UV + vec2(0.5,0)), UV.y);
 	//vec3 west = vec3(UV.x, get_height(UV - vec2(0.5,0)), UV.y);
