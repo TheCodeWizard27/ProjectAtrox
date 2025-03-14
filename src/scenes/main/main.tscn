@@ -1,9 +1,21 @@
-[gd_scene load_steps=17 format=3 uid="uid://bq6usq7njb8xd"]
+[gd_scene load_steps=14 format=3 uid="uid://bq6usq7njb8xd"]
 
+[ext_resource type="Script" uid="uid://dm6pxwcex4s5h" path="res://src/scenes/main/main.gd" id="1_fub2y"]
 [ext_resource type="Shader" uid="uid://nq2mpdc05nl4" path="res://src/scenes/main/main.gdshader" id="1_um1xw"]
 [ext_resource type="Texture2D" uid="uid://c8skxedfihljp" path="res://src/assets/Heightmap.png" id="2_6el57"]
-[ext_resource type="Script" path="res://src/scenes/main/camera_3d.gd" id="4_uh3h8"]
+[ext_resource type="PackedScene" uid="uid://duchts23k3yxm" path="res://src/scenes/player/player.tscn" id="4_vw57g"]
 [ext_resource type="PackedScene" uid="uid://cgnqocbmd7efn" path="res://src/scenes/base_enemy/base_enemy.tscn" id="5_c754u"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_vw57g"]
+
+[sub_resource type="Sky" id="Sky_fub2y"]
+sky_material = SubResource("PhysicalSkyMaterial_vw57g")
+
+[sub_resource type="Environment" id="Environment_3q0a4"]
+background_mode = 2
+sky = SubResource("Sky_fub2y")
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_cx4eu"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wo6rc"]
 
@@ -24,17 +36,16 @@ subdivide_width = 257
 subdivide_depth = 257
 
 [node name="Main" type="Node3D"]
+script = ExtResource("1_fub2y")
+height_map = ExtResource("2_6el57")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.543076, -0.835031, 0.0882712, 0.491952, -0.231221, 0.839357, -0.680478, 0.49926, 0.536366, -12.9537, 28.2241, -75.3056)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_lkyke")
-camera_attributes = SubResource("CameraAttributesPhysical_4w6rl")
-
-[node name="Player" parent="." instance=ExtResource("3_pxifb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.28838, 0)
+environment = SubResource("Environment_3q0a4")
+camera_attributes = SubResource("CameraAttributesPractical_cx4eu")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 physics_material_override = SubResource("PhysicsMaterial_wo6rc")
@@ -46,29 +57,9 @@ shape = SubResource("HeightMapShape3D_lw1sj")
 material_override = SubResource("ShaderMaterial_wkj7t")
 mesh = SubResource("PlaneMesh_6fahk")
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.79543, 0)
-
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="RigidBody3D"]
-remote_path = NodePath("../../Camera3D")
-update_rotation = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-shape = SubResource("SphereShape3D_jqomj")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
-mesh = SubResource("SphereMesh_y13bp")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.968942, 0.247287, 0, -0.247287, 0.968942, 0, 4.79543, 0)
-environment = SubResource("Environment_rsx47")
-attributes = SubResource("CameraAttributesPractical_de42x")
-current = true
-fov = 37.8493
-script = ExtResource("4_uh3h8")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.543076, -0.835031, 0.0882715, 0.491952, -0.231221, 0.839357, -0.680478, 0.49926, 0.536366, -12.9537, 28.2241, -75.3056)
-
-[node name="BaseEnemy" parent="." instance=ExtResource("5_c754u")]
+[node name="BaseEnemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_c754u")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 15, 17, -0.004)
+player = NodePath("../Player")
+
+[node name="Player" parent="." instance=ExtResource("4_vw57g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.94366, 0)

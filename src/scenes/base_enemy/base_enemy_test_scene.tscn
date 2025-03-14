@@ -1,17 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://use5kxeyplxt"]
+[gd_scene load_steps=3 format=3 uid="uid://use5kxeyplxt"]
 
-[ext_resource type="PackedScene" uid="uid://b6a75x1i220e6" path="res://src/scenes/free_cam/free_cam.tscn" id="1_qbg13"]
 [ext_resource type="PackedScene" uid="uid://cgnqocbmd7efn" path="res://src/scenes/base_enemy/base_enemy.tscn" id="2_mvs46"]
 [ext_resource type="PackedScene" uid="uid://duchts23k3yxm" path="res://src/scenes/player/player.tscn" id="3_3fkcl"]
 
 [node name="BaseEnemyTestScene" type="Node3D"]
-
-[node name="FreeCam" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_qbg13")]
-enabled = false
-camera = NodePath("../Camera3D")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-current = true
 
 [node name="Map" type="Node3D" parent="."]
 
@@ -41,5 +33,4 @@ transform = Transform3D(1, 0, 0, 0, 0.647561, 0.762013, 0, -0.762013, 0.647561, 
 [node name="BaseEnemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_mvs46")]
 player = NodePath("../Player")
 
-[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_3fkcl")]
-camera = NodePath("../Camera3D")
+[node name="Player" parent="." instance=ExtResource("3_3fkcl")]

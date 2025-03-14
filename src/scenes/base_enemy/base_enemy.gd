@@ -12,11 +12,10 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func chase(delta: float) -> void: 
-	var direction = _body.global_position.direction_to(player._body.global_position)
+	var direction = _body.global_position.direction_to(player.body.global_position)
 	_body.velocity = direction * enemySpeed
 	_body.velocity.y = -Globals.GRAVITY
 	
-
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
