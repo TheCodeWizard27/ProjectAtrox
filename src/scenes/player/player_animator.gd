@@ -17,7 +17,6 @@ var _attack_map = {
 var _falling_blend_amount = "parameters/falling/blend_amount"
 var _falling_blend_speed = 10
 var _running_blend_position = "parameters/running/blend_position"
-var _attack_animation = "attack_melee_1"
 var _attack_request = "parameters/attack_one_shot/request"
 var _attack_type = "parameters/attack/blend_position"
 
@@ -47,5 +46,3 @@ func _on_animation_finished(anim_name: StringName) -> void:
 		.any(func(attack_animation): return attack_animation == anim_name)
 	if(animation_matches_any_attack):
 		on_attack_finished.emit()
-	#if(anim_name == _attack_animation):
-		#on_attack_finished.emit()

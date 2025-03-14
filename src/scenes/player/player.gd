@@ -17,7 +17,7 @@ extends Node3D
 @export var turn_threshold: float = Globals.PLAYER_TURN_THRESHOLD
 
 @onready var _state: StateMachine = %State
-@onready var _body: CharacterBody3D = %Body
+@onready var body: CharacterBody3D = %Body
 @onready var _camera_mount: CameraController = %CameraMount
 @onready var _weapon_placeholder: PlaceholderNode = %WeaponPlaceholder
 
@@ -47,11 +47,11 @@ func process_movement(delta: float, speed_modifier: float = 1) -> void:
 	move_dir = move_dir.rotated(Vector3.UP, _camera_mount.rotation.y).normalized()
 	
 	# Calculate velocity with separated y component.
-	var y_velocity = _body.velocity.y
-	_body.velocity = move_dir * max_speed * speed_modifier
+	var y_velocity = body.velocity.y
+	body.velocity = move_dir * max_speed * speed_modifier
 	# TODO maybe using acceleration movement is not the way.
 	#_body.velocity = _body.velocity.move_toward(move_dir * max_speed, acceleration * delta)
-	_body.velocity.y = y_velocity - Globals.GRAVITY * delta
+	body.velocity.y = y_velocity - Globals.GRAVITY * delta
 	
 	if(speed_modifier <= 0):
 		return
@@ -59,7 +59,7 @@ func process_movement(delta: float, speed_modifier: float = 1) -> void:
 	# Rotate Character body	
 	if(move_dir.length() > turn_threshold):
 		var target = Vector3.BACK.signed_angle_to(move_dir, Vector3.UP)
-		_body.rotation.y = lerp_angle(_body.rotation.y, target, 10 * delta)
+		body.rotation.y = lerp_angle(body.rotation.y, target, 10 * delta)
 
 func _equip_melee() -> void:
 	weapon = _weapon_placeholder.create_new(preload("res://src/scenes/player/weapon/melee_weapon/melee_weapon.tscn"))
@@ -93,6 +93,19 @@ func _physics_process(delta: float) -> void:
 	
 	_state.physics_process(delta)
 	_apply_movement(delta)
+	handle_collision()
 
 func _apply_movement(delta: float) -> void:
-	_body.move_and_slide()
+	body.move_and_slide()
+	
+	var movement = Vector2(body.velocity.x, body.velocity.z)
+	
+	if(movement.length() > turn_threshold):
+		var target = Quaternion(Vector3.UP, Vector2(body.velocity.z, body.velocity.x).angle())
+		body.basis = body.basis.slerp(target, 0.2)
+		
+func handle_collision() -> void:
+	for i in body.get_slide_collision_count():	
+		var collision = body.get_slide_collision(i)
+		if(collision.get_collider().name == "CharacterBody3D"):
+			print("Ouch :< ", collision.get_collider().name)
