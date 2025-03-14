@@ -21,7 +21,24 @@ extends Node3D
 @onready var _camera_mount: CameraController = %CameraMount
 @onready var _weapon_placeholder: PlaceholderNode = %WeaponPlaceholder
 
+#stats
+@export var health = 15
+@export var max_ammo = 10
+@export var curr_ammo = 10
+
 var weapon: Weapon
+
+func _test_damage(damage: int) -> void:
+	health -= damage
+	
+func _test_ammo() -> void:
+	curr_ammo -= 1
+
+func _input(event: InputEvent):
+	if Input.is_action_just_pressed("damage_test"):
+		_test_damage(1)
+		_test_ammo()
+		
 
 func process_movement(delta: float, speed_modifier: float = 1) -> void:
 	var move_dir = Vector3.ZERO
