@@ -97,7 +97,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("Transform/Body:mesh:material:albedo_color")
 tracks/1/interp = 0
 tracks/1/loop_wrap = true
@@ -167,7 +167,7 @@ mesh = SubResource("BoxMesh_lpve6")
 skeleton = NodePath("../..")
 
 [node name="Effect" type="MeshInstance3D" parent="Transform"]
-transform = Transform3D(0.702926, -0.711263, 0.00102892, 0.710523, 0.70226, 0.0445938, -0.0324405, -0.0306151, 0.999005, -0.00488149, 0.147217, 0.743839)
+transform = Transform3D(0.702926, -0.711262, 0.00102892, 0.710523, 0.70226, 0.0445938, -0.0324405, -0.0306151, 0.999005, -0.00488149, 0.147217, 0.743839)
 visible = false
 mesh = SubResource("BoxMesh_70fa1")
 

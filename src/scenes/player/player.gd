@@ -49,8 +49,6 @@ func process_movement(delta: float, speed_modifier: float = 1) -> void:
 	# Calculate velocity with separated y component.
 	var y_velocity = body.velocity.y
 	body.velocity = move_dir * max_speed * speed_modifier
-	# TODO maybe using acceleration movement is not the way.
-	#_body.velocity = _body.velocity.move_toward(move_dir * max_speed, acceleration * delta)
 	body.velocity.y = y_velocity - Globals.GRAVITY * delta
 	
 	if(speed_modifier <= 0):
@@ -68,7 +66,6 @@ func _equip_ranged() -> void:
 	weapon = _weapon_placeholder.create_new(preload("res://src/scenes/player/weapon/ranged_weapon/ranged_weapon.tscn"))
 
 func _ready() -> void:
-	#_equip_ranged()
 	_equip_melee()
 
 func _set_camera_active(value: bool) -> void:
