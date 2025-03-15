@@ -21,7 +21,8 @@ func enter(msg: Dictionary = {}) -> void:
 	player.weapon.play_attack()
 
 func physics_update(delta: float) -> void:
-	player.process_movement(delta, 0)
+	player.process_movement(delta, 0.4)
+	animator.set_running(0.4)
 	
 	_attack_time += delta
 	
