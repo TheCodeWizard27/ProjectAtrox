@@ -1,9 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgnqocbmd7efn"]
+[gd_scene load_steps=5 format=3 uid="uid://cgnqocbmd7efn"]
 
-[ext_resource type="Script" path="res://src/scenes/base_enemy/base_enemy.gd" id="1_hgge1"]
-[ext_resource type="Script" path="res://src/utility/state_machine/state_machine.gd" id="2_pa4fa"]
-[ext_resource type="Script" path="res://src/scenes/base_enemy/states/idle.gd" id="3_2sic5"]
-[ext_resource type="Script" path="res://src/scenes/base_enemy/states/chase.gd" id="4_itarq"]
+[ext_resource type="Script" uid="uid://lhavchxtu3fb" path="res://src/scenes/base_enemy/base_enemy.gd" id="1_hgge1"]
+[ext_resource type="Script" uid="uid://vgebk2lire6m" path="res://src/utility/state_machine/state_machine.gd" id="2_pa4fa"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_aiw85"]
 
@@ -14,17 +12,8 @@ script = ExtResource("1_hgge1")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_pa4fa")
-initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("baseEnemy")]
-script = ExtResource("3_2sic5")
-baseEnemy = NodePath("../..")
-
-[node name="Chase" type="Node" parent="StateMachine" node_paths=PackedStringArray("baseEnemy")]
-script = ExtResource("4_itarq")
-baseEnemy = NodePath("../..")
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." groups=["enemy"]]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
 mesh = SubResource("BoxMesh_aiw85")

@@ -15,13 +15,17 @@ extends Node3D
 @export var max_jump_height: float = Globals.PLAYER_MAX_JUMP_HEIGHT
 @export var jump_time: float = Globals.PLAYER_JUMP_TIME
 @export var turn_threshold: float = Globals.PLAYER_TURN_THRESHOLD
+@export var max_health: int = Globals.PLAYER_MAX_HEALTH
 
 @onready var _state: StateMachine = %State
 @onready var _body: CharacterBody3D = %Body
 @onready var _camera_mount: CameraController = %CameraMount
 @onready var _weapon_placeholder: InstancePlaceholder = %WeaponPlaceholder
 
+signal on_hit(damage: int)
+
 var weapon: Weapon
+var current_health: int
 
 func process_movement(delta: float, speed_modifier: float = 1):
 	var move_dir = Vector3.ZERO
@@ -50,7 +54,9 @@ func _equip_ranged() -> void:
 		.create_instance(true, preload("res://src/scenes/player/weapon/ranged_weapon/ranged_weapon.tscn"))
 
 func _ready() -> void:
-	_equip_ranged()
+	on_hit.connect(handle_hit)
+	current_health = max_health
+	_equip_melee()
 
 func _set_camera_active(value: bool) -> void:
 	_camera_mount.active = value
@@ -74,7 +80,6 @@ func _physics_process(delta: float) -> void:
 	
 	_state.physics_process(delta)
 	_apply_movement(delta)
-	handle_collision()
 
 func _apply_movement(delta: float) -> void:
 	_body.move_and_slide()
@@ -85,8 +90,5 @@ func _apply_movement(delta: float) -> void:
 		var target = Quaternion(Vector3.UP, Vector2(_body.velocity.z, _body.velocity.x).angle())
 		_body.basis = _body.basis.slerp(target, 0.2)
 		
-func handle_collision() -> void:
-	for i in _body.get_slide_collision_count():	
-		var collision = _body.get_slide_collision(i)
-		if(collision.get_collider().name == "CharacterBody3D"):
-			print("Ouch :< ", collision.get_collider().name)
+func handle_hit(damage: int) -> void:
+	current_health = current_health - damage

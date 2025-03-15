@@ -5,19 +5,18 @@ extends Node3D
 @onready var _state: StateMachine = $'StateMachine'
 @onready var _body: CharacterBody3D = $'CharacterBody3D'
 
-var enemySpeed: float = 3.0;
+signal on_hit(damage: int)
+
+var enemy_speed: float = 3.0
+var enemy_attack_damage: int = 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	on_hit.connect(process_hit)
 	pass # Replace with function body.
 
-func chase(delta: float) -> void: 
-	var direction = _body.global_position.direction_to(player._body.global_position)
-	_body.velocity = direction * enemySpeed
-	_body.velocity.y = -Globals.GRAVITY
-	
-
-	pass
+func process_hit(damage: int) -> void:
+	print(damage)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -26,9 +25,8 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	_state.physics_process(delta)
 	_body.move_and_slide()
-	#handle_collision()
 
-#func handle_collision() -> void:
-	#for i in _body.get_slide_collision_count():	
-		##var collision = _body.get_slide_collision(i)
-		##print("I collided with ", collision.get_collider().name)
+	for i in _body.get_slide_collision_count():	
+		var collision = _body.get_slide_collision(i).get_collider()
+		if(collision.is_in_group("player")):
+			player.handle_hit(enemy_attack_damage)

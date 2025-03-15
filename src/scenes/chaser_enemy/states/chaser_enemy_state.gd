@@ -1,7 +1,7 @@
-class_name BaseEnemyState
+class_name ChaserEnemyState
 extends State
 
-@export var base_enemy: BaseEnemy
+@export var chaser_enemy: ChaserEnemy
 
 const IDLE: NodePath = ^'Idle'
 const CHASE: NodePath = ^'Chase'

@@ -1,4 +1,3 @@
-
 class_name Globals
 
 const GRAVITY: float = 9.81 * 2
@@ -8,3 +7,4 @@ const PLAYER_MIN_JUMP_HEIGHT: float = 10.0
 const PLAYER_MAX_JUMP_HEIGHT: float = 10.0
 const PLAYER_JUMP_TIME: float = 0.1
 const PLAYER_TURN_THRESHOLD: float = 0.2
+const PLAYER_MAX_HEALTH: int = 20

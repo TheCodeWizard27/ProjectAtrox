@@ -5,12 +5,12 @@
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_40e2c"]
 
-[sub_resource type="Sky" id="Sky_w5o4s"]
+[sub_resource type="Sky" id="Sky_lrh41"]
 sky_material = SubResource("PhysicalSkyMaterial_40e2c")
 
 [sub_resource type="Environment" id="Environment_lu6ox"]
 background_mode = 2
-sky = SubResource("Sky_w5o4s")
+sky = SubResource("Sky_lrh41")
 tonemap_mode = 2
 sdfgi_enabled = true
 
