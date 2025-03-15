@@ -1,6 +1,5 @@
-[gd_scene load_steps=3 format=3 uid="uid://use5kxeyplxt"]
+[gd_scene load_steps=2 format=3 uid="uid://use5kxeyplxt"]
 
-[ext_resource type="PackedScene" uid="uid://cgnqocbmd7efn" path="res://src/scenes/base_enemy/base_enemy.tscn" id="2_mvs46"]
 [ext_resource type="PackedScene" uid="uid://duchts23k3yxm" path="res://src/scenes/player/player.tscn" id="3_3fkcl"]
 
 [node name="BaseEnemyTestScene" type="Node3D"]
@@ -30,7 +29,5 @@ size = Vector3(6.23926, 1, 8.31396)
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.647561, 0.762013, 0, -0.762013, 0.647561, 0, 40.0506, 0)
 
-[node name="BaseEnemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_mvs46")]
-player = NodePath("../Player")
-
 [node name="Player" parent="." instance=ExtResource("3_3fkcl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.82619, -0.630828, 0)

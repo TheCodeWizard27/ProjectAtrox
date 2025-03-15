@@ -22,7 +22,7 @@ func enter(msg: Dictionary = {}) -> void:
 
 func physics_update(delta: float) -> void:
 	player.process_movement(delta, 0.4)
-	animator.set_running(0.4)
+	animator.set_running(Vector2(body.velocity.x, body.velocity.z).length() * 0.1)
 	
 	_attack_time += delta
 	
