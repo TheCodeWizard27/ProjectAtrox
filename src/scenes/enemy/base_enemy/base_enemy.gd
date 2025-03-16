@@ -5,12 +5,15 @@ class_name BaseEnemy
 @export var attack_distance: float = 2
 @export var attack_cooldown: float = 4
 @export var attack_time: float = 1
+@export var attack_damage: float = 2
+@export var max_health: float = 5
+@export var speed: float = 5.0
 
 @export var state: StateMachine
 @export var body: CharacterBody3D
 @export var player_detector: Area3D
 
-var enemy_speed: float = 5.0;
+var current_health: float = max_health
 
 func move_towards_player(target: Player) -> void:
 	if(is_near_player(target)):
@@ -18,11 +21,14 @@ func move_towards_player(target: Player) -> void:
 	
 	var direction = body.global_position.direction_to(target.body.global_position)
 	direction.y = 0
-	body.velocity = direction * enemy_speed
+	body.velocity = direction * speed
 	
 func is_near_player(target: Player) -> bool:
 	var distance = body.global_position.distance_to(target.body.global_position)
 	return distance <= attack_distance
+
+func get_hit(damage: float, source: Node3D) -> void:
+	current_health = max(current_health - damage, 0)
 
 func attack() -> void:
 	pass

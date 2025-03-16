@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://bolli0ih68nvu"]
+
+[ext_resource type="Script" uid="uid://xigyeprc6v8y" path="res://src/scenes/enemy/health_bar/healthbar.gd" id="1_qbpgh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qbpgh"]
+bg_color = Color(1, 0.6, 0.6, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ttni5"]
+bg_color = Color(0.6, 1, 0.6, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+script = ExtResource("1_qbpgh")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -112.0
+offset_right = 112.0
+offset_bottom = 27.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_qbpgh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ttni5")

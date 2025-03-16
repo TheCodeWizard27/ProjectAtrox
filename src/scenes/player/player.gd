@@ -18,14 +18,16 @@ extends Node3D
 
 @onready var _state: StateMachine = %State
 @onready var body: CharacterBody3D = %Body
+@onready var _animator: PlayerAnimator = %PlayerAnimator
 @onready var _camera_mount: CameraController = %CameraMount
 @onready var _weapon_placeholder: PlaceholderNode = %WeaponPlaceholder
 
 #stats
-@export var health = 15
+@export var health = 10
 @export var max_ammo = 10
 @export var curr_ammo = 10
 
+var is_dead: bool = false
 var weapon: Weapon
 
 func _test_damage(damage: int) -> void:
@@ -74,6 +76,13 @@ func _set_camera_active(value: bool) -> void:
 func _process(delta: float) -> void:
 	if(!active):
 		return
+		
+	if(is_dead):
+		return
+	
+	if(health <= 0):
+		is_dead = true
+		_animator.play_death()
 	
 	if(Input.is_action_just_pressed("select_1")):
 		_equip_melee()
@@ -85,6 +94,9 @@ func _process(delta: float) -> void:
 	
 func _physics_process(delta: float) -> void:
 	if(!active):
+		return
+		
+	if(is_dead):
 		return
 	
 	_state.physics_process(delta)
@@ -99,5 +111,5 @@ func _apply_movement(delta: float) -> void:
 		var target = Quaternion(Vector3.UP, Vector2(body.velocity.z, body.velocity.x).angle())
 		body.basis = body.basis.slerp(target, 0.2)
 		
-func hit() -> void:
-	print("ouch")
+func get_hit(damage: float, source: Node3D) -> void:
+	health = max(health - damage, 0)

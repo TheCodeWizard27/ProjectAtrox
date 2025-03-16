@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://dh7e7ugko6w2p"]
+[gd_scene load_steps=20 format=3 uid="uid://dh7e7ugko6w2p"]
 
 [ext_resource type="Script" uid="uid://1atibms67cox" path="res://src/scenes/enemy/enemy_melee/enemy_melee.gd" id="1_xg01q"]
 [ext_resource type="Script" uid="uid://bokcde7p810nc" path="res://src/utility/state_machine/state_machine.gd" id="2_2cmeo"]
 [ext_resource type="Script" uid="uid://12vxwfgs7nx1" path="res://src/scenes/enemy/base_enemy/states/idle.gd" id="3_s8gca"]
 [ext_resource type="Script" uid="uid://bmnabo7fgsy0p" path="res://src/scenes/enemy/base_enemy/states/chase.gd" id="4_ypaoh"]
 [ext_resource type="Script" uid="uid://bl2xrbpai5tts" path="res://src/scenes/enemy/base_enemy/states/attack.gd" id="5_2cmeo"]
+[ext_resource type="PackedScene" uid="uid://bolli0ih68nvu" path="res://src/scenes/enemy/health_bar/healthbar.tscn" id="6_s8gca"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xg01q"]
 
@@ -30,6 +31,9 @@ size = Vector3(5, 5, 5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ypaoh"]
 size = Vector3(5, 5, 5)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_2cmeo"]
+viewport_path = NodePath("CharacterBody3D/Healthbar/SubViewport")
+
 [sub_resource type="Animation" id="Animation_s8gca"]
 length = 0.001
 tracks/0/type = "value"
@@ -54,7 +58,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -66,22 +70,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_2cmeo"]
-resource_name = "getting_hit"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterBody3D/MeshInstance3D:mesh:material:albedo_color")
-tracks/0/interp = 0
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.233333, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_chajs"]
@@ -111,6 +100,21 @@ tracks/1/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_2cmeo"]
+resource_name = "getting_hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody3D/MeshInstance3D:mesh:material:albedo_color")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ypaoh"]
 _data = {
 &"RESET": SubResource("Animation_s8gca"),
@@ -118,7 +122,7 @@ _data = {
 &"getting_hit": SubResource("Animation_2cmeo")
 }
 
-[node name="EnemyMelee" type="Node3D" node_paths=PackedStringArray("state", "body", "player_detector") groups=["Enemy"]]
+[node name="EnemyMelee" type="Node3D" node_paths=PackedStringArray("state", "body", "player_detector") groups=["enemy"]]
 script = ExtResource("1_xg01q")
 state = NodePath("StateMachine")
 body = NodePath("CharacterBody3D")
@@ -163,12 +167,25 @@ shape = SubResource("BoxShape3D_xg01q")
 
 [node name="AttackBox" type="Area3D" parent="CharacterBody3D"]
 unique_name_in_owner = true
+monitoring = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AttackBox"]
+visible = false
 mesh = SubResource("BoxMesh_s8gca")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/AttackBox"]
 shape = SubResource("BoxShape3D_ypaoh")
+
+[node name="Healthbar" type="Sprite3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38834, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_2cmeo")
+
+[node name="SubViewport" type="SubViewport" parent="CharacterBody3D/Healthbar"]
+transparent_bg = true
+size = Vector2i(224, 24)
+
+[node name="Control" parent="CharacterBody3D/Healthbar/SubViewport" instance=ExtResource("6_s8gca")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
