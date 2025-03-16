@@ -1,10 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://jw8gcy6vjnt8"]
+[gd_scene load_steps=21 format=3 uid="uid://jw8gcy6vjnt8"]
 
 [ext_resource type="PackedScene" uid="uid://duchts23k3yxm" path="res://src/scenes/player/player.tscn" id="1_6dc15"]
 [ext_resource type="Shader" uid="uid://bb4bph2ro8t2u" path="res://src/scenes/level/map1.tres" id="2_qivh2"]
 [ext_resource type="Texture2D" uid="uid://b7jxoxa6oykuf" path="res://src/assets/textures/walls/dry_riverbed_rock_diff_4k.png" id="3_qhlot"]
 [ext_resource type="Texture2D" uid="uid://rxgydouhfyna" path="res://src/assets/textures/walls/dry_riverbed_rock_nor_gl_4k.png" id="4_qitpp"]
 [ext_resource type="Texture2D" uid="uid://d2rqv30k3k7fc" path="res://src/assets/textures/walls/dry_riverbed_rock_rough_4k.png" id="5_qitpp"]
+[ext_resource type="Script" uid="uid://cgemuhhbqscsm" path="res://src/scenes/level/enemy_spawns.gd" id="6_vrmap"]
+[ext_resource type="PackedScene" uid="uid://bh8iofcv51y26" path="res://src/scenes/enemy/boss/boss.tscn" id="7_gh4c1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6dc15"]
 sky_top_color = Color(0.607615, 0.372392, 0.389763, 1)
@@ -188,3 +190,27 @@ mesh = SubResource("BoxMesh_vrmap")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.1864, 0.75, -89.1807)
 use_collision = true
 mesh = SubResource("BoxMesh_vrmap")
+
+[node name="Enemy Spawns" type="Node" parent="."]
+script = ExtResource("6_vrmap")
+
+[node name="Spawn1" type="Node3D" parent="Enemy Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.5796, 3.12427, -16.7328)
+
+[node name="Spawn2" type="Node3D" parent="Enemy Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83.784, 3.12427, -16.7328)
+
+[node name="Spawn3" type="Node3D" parent="Enemy Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.1379, 3.12427, -46.306)
+
+[node name="Spawn4" type="Node3D" parent="Enemy Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -117.696, 3.12427, -34.0047)
+
+[node name="Spawn5" type="Node3D" parent="Enemy Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80.4919, 3.12427, -34.0047)
+
+[node name="Spawn6" type="Node3D" parent="Enemy Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -98.138, 3.12427, -44.0121)
+
+[node name="Boss" parent="." instance=ExtResource("7_gh4c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2544, 8.72442, -139.57)

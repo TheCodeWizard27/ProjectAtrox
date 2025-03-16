@@ -15,6 +15,11 @@ run/main_scene="uid://dts652m1yys3n"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[global_group]
+
+player="Player identification"
+enemy=""
+
 [importer_defaults]
 
 animation_library={

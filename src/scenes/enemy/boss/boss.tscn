@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bh8iofcv51y26"]
+
+[ext_resource type="PackedScene" uid="uid://dh7e7ugko6w2p" path="res://src/scenes/enemy/enemy_melee/enemy_melee.tscn" id="1_5aqbh"]
+
+[node name="Boss" type="Node3D"]
+
+[node name="EnemyMelee" parent="." instance=ExtResource("1_5aqbh")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+attack_distance = 10.0
+max_health = 50.0
+speed = 0.5

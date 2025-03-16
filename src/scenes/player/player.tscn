@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://duchts23k3yxm"]
+[gd_scene load_steps=40 format=3 uid="uid://duchts23k3yxm"]
 
 [ext_resource type="Script" uid="uid://bcmfdvyi5u6qq" path="res://src/scenes/player/player.gd" id="1_6dcuc"]
 [ext_resource type="Script" uid="uid://bokcde7p810nc" path="res://src/utility/state_machine/state_machine.gd" id="1_vniht"]
@@ -80,6 +80,15 @@ value_label = "type"
 blend_mode = 1
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_6arlh"]
+filter_enabled = true
+filters = ["rig/Skeleton3D:ORG-forearm.L", "rig/Skeleton3D:ORG-forearm.R", "rig/Skeleton3D:ORG-hand.L", "rig/Skeleton3D:ORG-hand.L_end", "rig/Skeleton3D:ORG-hand.R", "rig/Skeleton3D:ORG-hand.R_end", "rig/Skeleton3D:ORG-shoulder.L", "rig/Skeleton3D:ORG-shoulder.R", "rig/Skeleton3D:ORG-upper_arm.L", "rig/Skeleton3D:ORG-upper_arm.R"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_sm61a"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ashbf"]
+animation = &"dying"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ld08d"]
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ocx1f"]
 
@@ -102,25 +111,38 @@ blend_point_2/pos = 0.0
 min_space = 0.0
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3x7hp"]
+graph_offset = Vector2(-205.641, 137.456)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_21jv3")
 nodes/Animation/position = Vector2(400, 240)
 nodes/attack/node = SubResource("AnimationNodeBlendSpace1D_sm61a")
 nodes/attack/position = Vector2(80, 100)
 nodes/attack_one_shot/node = SubResource("AnimationNodeOneShot_6arlh")
 nodes/attack_one_shot/position = Vector2(340, -60)
+nodes/dying/node = SubResource("AnimationNodeTimeSeek_sm61a")
+nodes/dying/position = Vector2(620, 440)
+nodes/dying_animation/node = SubResource("AnimationNodeAnimation_ashbf")
+nodes/dying_animation/position = Vector2(400, 480)
+nodes/dying_blend/node = SubResource("AnimationNodeBlend2_ld08d")
+nodes/dying_blend/position = Vector2(820, 300)
 nodes/falling/node = SubResource("AnimationNodeBlend2_ocx1f")
 nodes/falling/position = Vector2(600, 120)
-nodes/output/position = Vector2(820, 140)
+nodes/output/position = Vector2(1020, 360)
 nodes/running/node = SubResource("AnimationNodeBlendSpace1D_y8knu")
 nodes/running/position = Vector2(80, -100)
-node_connections = [&"attack_one_shot", 0, &"running", &"attack_one_shot", 1, &"attack", &"falling", 0, &"attack_one_shot", &"falling", 1, &"Animation", &"output", 0, &"falling"]
+node_connections = [&"attack_one_shot", 0, &"running", &"attack_one_shot", 1, &"attack", &"dying", 0, &"dying_animation", &"dying_blend", 0, &"falling", &"dying_blend", 1, &"dying", &"falling", 0, &"attack_one_shot", &"falling", 1, &"Animation", &"output", 0, &"dying_blend"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ashbf"]
 font_size = 32
 font_color = Color(0, 0, 0, 1)
 outline_size = 3
 
-[node name="Player" type="Node3D"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sm61a"]
+bg_color = Color(1, 0.6, 0.6, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ashbf"]
+bg_color = Color(0.6, 1, 0.6, 1)
+
+[node name="Player" type="Node3D" groups=["player"]]
 script = ExtResource("1_6dcuc")
 
 [node name="Body" type="CharacterBody3D" parent="."]
@@ -144,7 +166,7 @@ draw_pass_1 = SubResource("QuadMesh_ld08d")
 draw_skin = SubResource("Skin_ef3mv")
 
 [node name="CameraTracker" type="RemoteTransform3D" parent="Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.578396, 2, 0)
 remote_path = NodePath("../../CameraMount")
 update_rotation = false
 update_scale = false
@@ -152,39 +174,39 @@ update_scale = false
 [node name="botter_animated" parent="Body" instance=ExtResource("3_p5nxa")]
 
 [node name="rig" parent="Body/botter_animated" index="0"]
-transform = Transform3D(1.10473, 0.00649708, 0.0206423, -0.00728109, 1.10409, 0.0421435, -0.0203794, -0.0422712, 1.10392, -0.0506486, -0.0204968, 0.0402015)
+transform = Transform3D(1.04885, 0.000402163, 0.347547, 0.342557, 0.185491, -1.03397, -0.0587228, 1.08924, 0.175951, 0.580844, -0.0896825, -0.0073475)
 
 [node name="Skeleton3D" parent="Body/botter_animated/rig" index="0"]
-bones/0/rotation = Quaternion(0.12582, 9.29211e-10, 1.1785e-10, 0.992053)
-bones/1/rotation = Quaternion(-0.150441, -0.00297028, 0.00230442, 0.988612)
-bones/2/rotation = Quaternion(0.0293009, -0.028165, 0.00329543, 0.999168)
-bones/3/rotation = Quaternion(0.0121239, -0.0280406, 0.00441971, 0.999524)
-bones/4/rotation = Quaternion(0.193417, 0.00615366, -0.00988059, 0.981048)
-bones/5/rotation = Quaternion(0.688269, -0.00467987, -0.010658, 0.725362)
-bones/6/rotation = Quaternion(-0.819892, -0.00268563, -0.0114702, 0.572396)
-bones/8/rotation = Quaternion(-0.640594, -0.286173, -0.321563, 0.635879)
-bones/9/rotation = Quaternion(-0.0528616, 0.759075, -0.591605, 0.266484)
-bones/10/rotation = Quaternion(0.273839, 0.211027, 0.0311775, 0.937821)
-bones/11/rotation = Quaternion(-0.172026, -0.291208, -0.0387026, 0.94027)
+bones/0/rotation = Quaternion(0.12582, 9.29212e-10, 1.17849e-10, 0.992053)
+bones/1/rotation = Quaternion(-0.167629, 0.00272738, 0.0327655, 0.985302)
+bones/2/rotation = Quaternion(0.0774846, -0.0436038, 0.0262681, 0.995693)
+bones/3/rotation = Quaternion(0.0600519, -0.0427946, 0.0283305, 0.996875)
+bones/4/rotation = Quaternion(0.226508, 0.0158007, -0.0294471, 0.973436)
+bones/5/rotation = Quaternion(0.711978, -0.0154864, -0.0297552, 0.7014)
+bones/6/rotation = Quaternion(-0.799583, -0.00954502, -0.0321456, 0.599619)
+bones/8/rotation = Quaternion(-0.642106, -0.173544, -0.448335, 0.597141)
+bones/9/rotation = Quaternion(0.252029, 0.165097, -0.806964, -0.507969)
+bones/10/rotation = Quaternion(-0.242126, 0.366036, 0.570266, 0.694398)
+bones/11/rotation = Quaternion(-0.0951394, -0.70522, -0.132478, 0.689973)
 bones/12/rotation = Quaternion(0.0240571, 0.0443863, -0.237545, 0.970064)
-bones/13/rotation = Quaternion(-0.593804, 0.351954, 0.385595, 0.612243)
-bones/14/rotation = Quaternion(-0.047759, -0.744765, 0.597985, 0.292333)
-bones/15/rotation = Quaternion(0.278679, -0.210396, -0.0328559, 0.936479)
-bones/16/rotation = Quaternion(-0.209791, 0.306025, -0.043472, 0.927603)
+bones/13/rotation = Quaternion(-0.662039, 0.0276757, 0.543217, 0.51561)
+bones/14/rotation = Quaternion(0.0626796, -0.0752039, 0.910539, -0.401664)
+bones/15/rotation = Quaternion(0.105729, -0.204013, -0.0624129, 0.971239)
+bones/16/rotation = Quaternion(-0.184925, 0.402753, 0.238696, 0.86407)
 bones/17/rotation = Quaternion(-0.0219921, -0.0320753, 0.117901, 0.992263)
-bones/18/rotation = Quaternion(-2.89287e-07, 0.696936, 0.717134, -2.41041e-07)
-bones/20/rotation = Quaternion(-2.89424e-07, 0.696936, 0.717134, -2.40566e-07)
-bones/26/rotation = Quaternion(0.981388, 0.0323037, -0.0529868, 0.18173)
-bones/27/rotation = Quaternion(0.208833, -0.0715288, -0.0291084, 0.974898)
-bones/28/rotation = Quaternion(0.0130558, -0.707219, 0.140745, 0.692721)
-bones/29/rotation = Quaternion(0.0307678, -0.670829, 0.74055, -0.0250301)
-bones/31/rotation = Quaternion(0.978093, -0.0105691, 0.09503, 0.184908)
-bones/32/rotation = Quaternion(0.21149, 0.0340005, 0.0206507, 0.97657)
-bones/33/rotation = Quaternion(-0.00225873, 0.716128, -0.13062, 0.685634)
-bones/34/rotation = Quaternion(-0.0277434, -0.670926, 0.74067, 0.0222899)
+bones/18/rotation = Quaternion(-2.71543e-07, 0.696936, 0.717134, -2.32105e-07)
+bones/20/rotation = Quaternion(-2.79331e-07, 0.696936, 0.717134, -2.36486e-07)
+bones/26/rotation = Quaternion(0.969607, -0.133409, 0.139797, 0.150073)
+bones/27/rotation = Quaternion(0.383492, -0.17854, 0.00121115, 0.906121)
+bones/28/rotation = Quaternion(-0.193472, -0.709751, 0.448708, 0.507427)
+bones/29/rotation = Quaternion(0.0370445, -0.677274, 0.734656, -0.014467)
+bones/31/rotation = Quaternion(0.977774, 0.0305752, 0.12692, 0.164058)
+bones/32/rotation = Quaternion(0.280487, 0.106399, -0.0283552, 0.953521)
+bones/33/rotation = Quaternion(-0.178738, 0.760877, -0.15037, 0.605398)
+bones/34/rotation = Quaternion(-0.0318045, -0.671062, 0.740479, 0.0188713)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Body/botter_animated/rig/Skeleton3D" index="10"]
-transform = Transform3D(-0.892616, -0.325967, 0.31142, 0.364003, -0.928666, 0.0712884, 0.265967, 0.176991, 0.947594, -0.384507, 0.921858, 0.150756)
+transform = Transform3D(0.49862, 0.750287, -0.434106, -0.216962, 0.592886, 0.775508, 0.839229, -0.2925, 0.458409, 0.249523, 1.92638, 0.0524274)
 bone_name = "ORG-hand.R"
 bone_idx = 16
 
@@ -197,7 +219,7 @@ autoplay = "running"
 
 [node name="CameraMount" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.578396, 2, 0)
 script = ExtResource("3_fv4qe")
 
 [node name="CameraArm" type="SpringArm3D" parent="CameraMount"]
@@ -206,10 +228,10 @@ spring_length = 4.0
 margin = 0.2
 
 [node name="Camera3D" type="Camera3D" parent="CameraMount/CameraArm"]
-transform = Transform3D(0.994522, 0, -0.104528, 0, 1, 0, 0.104528, 0, 0.994522, -0.0831058, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0831058, 0, 0)
 
 [node name="RightHand" type="Node3D" parent="."]
-transform = Transform3D(-0.943575, -0.285023, 0.49932, 0.383708, -1.02679, 0.138987, 0.428153, 0.292087, 0.975818, -0.477558, 0.796147, 0.225768)
+transform = Transform3D(0.804077, 0.620137, -0.435623, -0.757538, 0.675357, -0.436887, 0.0210595, 0.61659, 0.916632, 0.943267, 0.453324, 2.21344)
 
 [node name="WeaponContainer" type="Node3D" parent="RightHand"]
 transform = Transform3D(-0.972067, -0.129259, -0.195899, -0.208227, 0.0898706, 0.973943, -0.108286, 0.98753, -0.114275, 0.00305516, -0.124844, 0.0128797)
@@ -228,27 +250,28 @@ initial_state = NodePath("Grounded")
 script = ExtResource("4_ktq5s")
 player = NodePath("../..")
 body = NodePath("../../Body")
-animator = NodePath("../../AnimationTree")
+animator = NodePath("../../PlayerAnimator")
 
 [node name="Grounded" type="Node" parent="State" node_paths=PackedStringArray("player", "body", "animator")]
 script = ExtResource("5_6nusj")
 player = NodePath("../..")
 body = NodePath("../../Body")
-animator = NodePath("../../AnimationTree")
+animator = NodePath("../../PlayerAnimator")
 
 [node name="Jumping" type="Node" parent="State" node_paths=PackedStringArray("player", "body", "animator")]
 script = ExtResource("7_hbynt")
 player = NodePath("../..")
 body = NodePath("../../Body")
-animator = NodePath("../../AnimationTree")
+animator = NodePath("../../PlayerAnimator")
 
 [node name="Attacking" type="Node" parent="State" node_paths=PackedStringArray("player", "body", "animator")]
 script = ExtResource("9_hvnhx")
 player = NodePath("../..")
 body = NodePath("../../Body")
-animator = NodePath("../../AnimationTree")
+animator = NodePath("../../PlayerAnimator")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="PlayerAnimator" type="AnimationTree" parent="."]
+unique_name_in_owner = true
 root_node = NodePath("%Body/botter_animated")
 tree_root = SubResource("AnimationNodeBlendTree_3x7hp")
 anim_player = NodePath("../Body/botter_animated/AnimationPlayer")
@@ -256,8 +279,10 @@ parameters/attack/blend_position = false
 parameters/attack_one_shot/active = false
 parameters/attack_one_shot/internal_active = false
 parameters/attack_one_shot/request = 0
-parameters/falling/blend_amount = 0.0
-parameters/running/blend_position = 0.0
+parameters/dying/seek_request = false
+parameters/dying_blend/blend_amount = 0.0
+parameters/falling/blend_amount = -1.0
+parameters/running/blend_position = 0.0166667
 script = ExtResource("8_nq300")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -307,8 +332,12 @@ texture = ExtResource("14_ashbf")
 layout_mode = 1
 offset_right = 227.0
 offset_bottom = 27.0
-max_value = 15.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_sm61a")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ashbf")
+max_value = 10.0
+value = 10.0
 
-[connection signal="animation_finished" from="AnimationTree" to="AnimationTree" method="_on_animation_finished"]
+[connection signal="animation_finished" from="PlayerAnimator" to="PlayerAnimator" method="_on_animation_finished"]
 
 [editable path="Body/botter_animated"]
